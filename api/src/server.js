@@ -4,7 +4,7 @@ const api = express();
 api.use(express.json());
 
 api.get("/", (req, res) => {
-  res.json("Hello World!");
+  res.json({ hello: "Hello World!" });
 });
 
 module.exports = { api };
