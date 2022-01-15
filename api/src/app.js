@@ -1,5 +1,10 @@
-const { api } = require("./server.js");
+const express = require("express");
 
-api.listen(3001, () => {
-  console.log("Done!");
-});
+const routes = require("./routes/index.js");
+
+const server = express();
+server.name = "API";
+
+server.use("/", routes);
+
+module.exports = server;

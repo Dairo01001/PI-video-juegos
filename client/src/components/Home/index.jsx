@@ -16,6 +16,7 @@ const Home = () => {
   return (
     <div>
       <h1>Video Juegos</h1>
+      <p>{hello}</p>
     </div>
   );
 };
