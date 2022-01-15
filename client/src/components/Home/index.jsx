@@ -8,15 +8,14 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRoot("Bogota"));
+    dispatch(getRoot());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(hello);
   return (
     <div>
       <h1>Video Juegos</h1>
-      <p>{hello}</p>
+      <p>{hello.msg}</p>
     </div>
   );
 };
