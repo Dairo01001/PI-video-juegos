@@ -1,6 +1,6 @@
 const express = require("express");
 
-const routes = require("./routes/index.js");
+const { index } = require("./routes/index.js");
 
 const server = express();
 server.name = "API";
@@ -16,6 +16,6 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use("/", routes);
+server.use("/", index);
 
 module.exports = server;
