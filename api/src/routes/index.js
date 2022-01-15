@@ -8,4 +8,6 @@ router.get("/", (req, res) => {
 
 module.exports = {
   index: router,
+  videogames: require("./videogames.js"),
+  genres: require("./genres.js"),
 };
