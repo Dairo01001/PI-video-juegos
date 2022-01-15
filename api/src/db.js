@@ -1,5 +1,6 @@
-const { Sequelize, INTEGER, STRING } = require("sequelize");
+const { Sequelize } = require("sequelize");
 const modelGenre = require("./models/Genre.js");
+const modelGame = require("./models/Game.js");
 const dotenv = require("dotenv");
 
 dotenv.config();
@@ -14,6 +15,11 @@ const sequelize = new Sequelize(
 );
 
 modelGenre(sequelize);
+modelGame(sequelize);
+
+const { genre, game } = sequelize.models;
+game.belongsToMany(genre, { through: "game_genre" });
+genre.belongsToMany(game, { through: "game_genre" });
 
 module.exports = {
   ...sequelize.models,
