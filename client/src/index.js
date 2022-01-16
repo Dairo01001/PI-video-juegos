@@ -9,10 +9,10 @@ import store from "./redux/store";
 const rootElement = document.getElementById("root");
 
 render(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <BrowserRouter>
       <App />
-    </Provider>
-  </BrowserRouter>,
+    </BrowserRouter>
+  </Provider>,
   rootElement
 );
