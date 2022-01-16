@@ -34,16 +34,6 @@ const getAllGames = async () => {
   }
 };
 
-const getGames = async (name, idVideogame) => {
-  if (name) {
-    return await getGameName(name);
-  }
-  if (idVideogame) {
-    return await getGameId(idVideogame);
-  }
-  return await getAllGames();
-};
-
 const getGenres = async () => {
   try {
     const response = await axios.get(
@@ -56,7 +46,6 @@ const getGenres = async () => {
 };
 
 module.exports = {
-  getGames,
   getGenres,
   getGameId,
   getGameName,

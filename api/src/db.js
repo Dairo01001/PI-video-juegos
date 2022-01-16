@@ -1,4 +1,4 @@
-const { Sequelize } = require("sequelize");
+const { Sequelize, Op } = require("sequelize");
 const modelGenre = require("./models/Genre.js");
 const modelGame = require("./models/Game.js");
 const dotenv = require("dotenv");
@@ -25,4 +25,5 @@ module.exports = {
   genre,
   game,
   conn: sequelize,
+  Op,
 };
