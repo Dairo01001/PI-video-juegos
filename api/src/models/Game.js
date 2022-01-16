@@ -26,10 +26,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     released: {
-      type: DATEONLY,
-      set(value) {
-        this.setDataValue("released", value ? value : NOW);
-      },
+      type: STRING,
     },
     rating: {
       type: FLOAT,

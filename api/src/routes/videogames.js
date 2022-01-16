@@ -41,8 +41,27 @@ router.get("/", async (req, res) => {
   res.json(await getGames());
 });
 
-router.post("/", (req, res) => {
-  res.json({ msg: "Hello Posts" });
+router.post("/", async (req, res) => {
+  let { id, name, description, released, rating, platforms, idsGenres } =
+    req.body;
+
+  const findGame = await game.findByPk(id);
+  if (findGame) {
+    return res.json(findGame);
+  }
+
+  released = released ? released : Date.now().toString();
+  rating = rating ? rating : 0.0;
+
+  const gameCreated = await game.create({
+    id,
+    name,
+    description,
+    released,
+    rating,
+    platforms,
+  });
+  res.json(gameCreated);
 });
 
 module.exports = router;
