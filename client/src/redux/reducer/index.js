@@ -1,15 +1,15 @@
-import { GET_ROOT } from "../actions";
+import { GET_GAMES } from "../actions";
 
 const initialState = {
-  root: "Dairo",
+  games: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_ROOT:
+    case GET_GAMES:
       return {
         ...state,
-        root: payload,
+        games: payload,
       };
     default:
       return state;

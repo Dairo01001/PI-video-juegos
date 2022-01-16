@@ -5,6 +5,6 @@ const force = true;
 
 conn.sync({ force }).then(() => {
   server.listen(3001, () => {
-    console.log("Done!");
+    console.log("Done! 3001");
   });
 });
