@@ -1,7 +1,29 @@
 const axios = require("axios").default;
 require("dotenv").config({ path: process.cwd().replace("src/lib", ".env") });
 
-const getGames = async (name, idVideogame) => {
+const getGameId = async (idVideogame) => {
+  try {
+    const response = await axios.get(
+      `https://api.rawg.io/api/games/${idVideogame}?key=${process.env.API_KEY}`
+    );
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getGameName = async (name) => {
+  try {
+    const response = await axios.get(
+      `https://api.rawg.io/api/games?search=${name}&key=${process.env.API_KEY}`
+    );
+    return response.data.results;
+  } catch (error) {
+    return error;
+  }
+};
+
+const getAllGames = async () => {
   try {
     const response = await axios.get(
       `https://api.rawg.io/api/games?key=${process.env.API_KEY}`
@@ -10,6 +32,16 @@ const getGames = async (name, idVideogame) => {
   } catch (error) {
     return error;
   }
+};
+
+const getGames = async (name, idVideogame) => {
+  if (name) {
+    return await getGameName(name);
+  }
+  if (idVideogame) {
+    return await getGameId(idVideogame);
+  }
+  return await getAllGames();
 };
 
 const getGenres = async () => {
@@ -26,4 +58,7 @@ const getGenres = async () => {
 module.exports = {
   getGames,
   getGenres,
+  getGameId,
+  getGameName,
+  getAllGames,
 };
