@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getGames } from "../../redux/actions";
 import Card from "../Card";
@@ -16,6 +17,7 @@ const Home = () => {
   return (
     <div>
       <h1>Video Juegos</h1>
+      <Link to="/home/creategame">Create Game</Link>
       <div>
         {games.map((game) => (
           <Card
