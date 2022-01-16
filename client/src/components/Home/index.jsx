@@ -20,6 +20,7 @@ const Home = () => {
         {games.map((game) => (
           <Card
             key={game.id}
+            id={game.id}
             name={game.name}
             background_image={game.background_image}
             genres={game.genres}

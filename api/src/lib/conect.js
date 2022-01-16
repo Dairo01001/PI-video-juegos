@@ -3,7 +3,7 @@ require("dotenv").config({ path: process.cwd().replace("src/lib", ".env") });
 
 const cantidadGames = 100;
 
-const getGamesAPI = async () => {
+const getGames = async (name, idVideogame) => {
   try {
     const response = await axios.get(
       `https://api.rawg.io/api/games?key=${process.env.API_KEY}`
@@ -14,6 +14,18 @@ const getGamesAPI = async () => {
   }
 };
 
+const getGenres = async () => {
+  try {
+    const response = await axios.get(
+      `https://api.rawg.io/api/genres?key=${process.env.API_KEY}`
+    );
+    return response.data.results;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
-  getGamesAPI,
+  getGames,
+  getGenres,
 };
