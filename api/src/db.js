@@ -22,6 +22,7 @@ game.belongsToMany(genre, { through: "game_genre" });
 genre.belongsToMany(game, { through: "game_genre" });
 
 module.exports = {
-  ...sequelize.models,
+  genre,
+  game,
   conn: sequelize,
 };

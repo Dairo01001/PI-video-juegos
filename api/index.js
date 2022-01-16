@@ -1,9 +1,7 @@
 const server = require("./src/app.js");
-const { conn } = require("./src/db.js");
+const { conn, genre } = require("./src/db.js");
 
-const force = true;
-
-conn.sync({ force }).then(() => {
+conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
     console.log("Done! 3001");
   });
