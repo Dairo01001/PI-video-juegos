@@ -27,18 +27,16 @@ const getGames = async () => {
 };
 
 router.get("/", async (req, res) => {
-  const { idVideogame } = req.body;
   const { name } = req.query;
-  if (name && idVideogame) {
-    return res.status(404).json({ msg: "Send 'name' or 'id'" });
-  }
   if (name) {
     return res.json(await getGamesName(name));
   }
-  if (idVideogame) {
-    return res.json(await getGamesId(idVideogame));
-  }
   res.json(await getGames());
+});
+
+router.get("/:idVideogame", async (req, res) => {
+  const { idVideogame } = req.params;
+  res.json(await getGamesId(idVideogame));
 });
 
 router.post("/", async (req, res) => {
