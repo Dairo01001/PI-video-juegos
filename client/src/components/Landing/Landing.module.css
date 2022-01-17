@@ -1,0 +1,21 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../images/landing.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  font-size: 1.5em;
+  background: transparent;
+  border: none;
+}
+
+.button :hover {
+  color: #6e3153;
+}
