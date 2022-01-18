@@ -2,7 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 require("./db.js");
 
-const { index, videogames, genres } = require("./routes/index.js");
+const { index, videogames, genres, platforms } = require("./routes/index.js");
 
 const server = express();
 server.name = "API";
@@ -23,5 +23,6 @@ server.use((req, res, next) => {
 server.use("/", index);
 server.use("/videogames", videogames);
 server.use("/genres", genres);
+server.use("/platforms", platforms);
 
 module.exports = server;

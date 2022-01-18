@@ -27,9 +27,11 @@ const GameDetail = () => {
     genres,
     description,
     released,
-    ratings,
+    rating,
     platforms,
   } = gameDetail;
+
+  
 
   return (
     <div className={styled.card}>
@@ -59,13 +61,7 @@ const GameDetail = () => {
             </li>
           ))}
         </ul>
-        <ul>
-          {ratings.map(({ title, percent }) => (
-            <li className={styled.genre} key={title}>
-              {title}: {percent}%
-            </li>
-          ))}
-        </ul>
+        <p>{rating}</p>
       </div>
     </div>
   );
