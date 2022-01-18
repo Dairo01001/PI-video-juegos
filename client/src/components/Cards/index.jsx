@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import Card from "../Card";
 import Loader from "../Loader";
+import styled from "./Cards.module.css"
 
 const Cards = () => {
   const games = useSelector((state) => state.games);
@@ -10,7 +11,7 @@ const Cards = () => {
   }
 
   return (
-    <div>
+    <div className={styled.band}>
       {games.map((game) => (
         <Card
           key={game.id}

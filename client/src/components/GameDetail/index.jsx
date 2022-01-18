@@ -40,7 +40,9 @@ const GameDetail = () => {
         <h1 className={styled.title}>{name}</h1>
         <ul>
           {genres.map((genre) => (
-            <li className={styled.genre} key={genre.id}>{genre.name}</li>
+            <li className={styled.genre} key={genre.id}>
+              {genre.name}
+            </li>
           ))}
         </ul>
         <div className={styled.separator}></div>
@@ -49,18 +51,22 @@ const GameDetail = () => {
       <time className={styled.date} dateTime={released}>
         {released}
       </time>
-      <ul className={styled.ul_platform}>
-        {platforms.map(({ platform }) => (
-          <li className={styled.platform} key={platform.name}>{platform.name}</li>
-        ))}
-      </ul>
-      <ul className={styled.ul_raiting}>
-        {ratings.map(({ title, percent }) => (
-          <li className={styled.genre} key={title}>
-            {title}: {percent}%
-          </li>
-        ))}
-      </ul>
+      <div className={styled.uls}>
+        <ul>
+          {platforms.map(({ platform }) => (
+            <li className={styled.platform} key={platform.name}>
+              {platform.name}
+            </li>
+          ))}
+        </ul>
+        <ul>
+          {ratings.map(({ title, percent }) => (
+            <li className={styled.genre} key={title}>
+              {title}: {percent}%
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
