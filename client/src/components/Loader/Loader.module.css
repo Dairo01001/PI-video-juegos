@@ -1,7 +1,5 @@
 :root {
   --size: 100px;
-  --dark: #111c3a;
-  --lingth: #6f3254;
 }
 
 .container {
@@ -10,7 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(50deg, var(--dark), var(--lingth));
 }
 
 .loader {
@@ -18,6 +15,7 @@
   height: var(--size);
   border: 10px solid #f12b46;
   border-top: 10px solid #f6c47f;
+  box-shadow: 0 0 20px #232481;
   border-radius: 50%;
   animation-name: girar;
   animation-duration: 2s;

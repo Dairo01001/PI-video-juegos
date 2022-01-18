@@ -18,7 +18,7 @@ const GameDetail = () => {
   const gameDetail = useSelector((state) => state.gameDetail);
 
   if (!gameDetail.hasOwnProperty("name")) {
-    return <Loader/>;
+    return <Loader />;
   }
 
   const {
@@ -32,26 +32,33 @@ const GameDetail = () => {
   } = gameDetail;
 
   return (
-    <div className={styled.container}>
-      <h2 className="title">{name}</h2>
-      <img src={background_image} alt={name} />
-      <time dateTime={released}>{released}</time>
-      <ul>
-        {genres.map((genre) => (
-          <li key={genre.id}>{genre.name}</li>
-        ))}
-      </ul>
-      <div dangerouslySetInnerHTML={{ __html: description }}></div>
-      <ul>
-        {ratings.map(({ title, percent }) => (
-          <p key={title}>
-            {title}: {percent}%
-          </p>
-        ))}
-      </ul>
-      <ul>
+    <div className={styled.card}>
+      <div className={styled.thumbnail}>
+        <img className={styled.img_left} src={background_image} alt={name} />
+      </div>
+      <div className={styled.div_right}>
+        <h1 className={styled.title}>{name}</h1>
+        <ul>
+          {genres.map((genre) => (
+            <li className={styled.genre} key={genre.id}>{genre.name}</li>
+          ))}
+        </ul>
+        <div className={styled.separator}></div>
+        <div dangerouslySetInnerHTML={{ __html: description }}></div>
+      </div>
+      <time className={styled.date} dateTime={released}>
+        {released}
+      </time>
+      <ul className={styled.ul_platform}>
         {platforms.map(({ platform }) => (
-          <li key={platform.name}>{platform.name}</li>
+          <li className={styled.platform} key={platform.name}>{platform.name}</li>
+        ))}
+      </ul>
+      <ul className={styled.ul_raiting}>
+        {ratings.map(({ title, percent }) => (
+          <li className={styled.genre} key={title}>
+            {title}: {percent}%
+          </li>
         ))}
       </ul>
     </div>
