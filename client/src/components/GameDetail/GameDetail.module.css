@@ -1,7 +1,7 @@
 .card {
   position: relative;
-  height: 500px;
   width: 1000px;
+  min-height: 500px;
   margin: 100px auto;
   background-color: #fff;
   -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
