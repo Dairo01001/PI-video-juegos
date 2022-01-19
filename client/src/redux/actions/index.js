@@ -17,7 +17,7 @@ export const getGameDetail = (idVideogame) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/videogames/${idVideogame}`
+        `http://localhost:3001/videogame/${idVideogame}`
       );
       dispatch({ type: GET_GAME_DETAIL, payload: response.data });
     } catch (error) {
