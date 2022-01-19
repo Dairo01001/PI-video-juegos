@@ -1,5 +1,6 @@
 const axios = require("axios").default;
 require("dotenv").config({ path: process.cwd().replace("src/lib", ".env") });
+const GAMES = 100;
 
 const getGameId = async (idVideogame) => {
   try {
@@ -24,11 +25,30 @@ const getGameName = async (name) => {
 };
 
 const getAllGames = async () => {
+  let games = [];
   try {
-    const response = await axios.get(
+    let response = await axios.get(
       `https://api.rawg.io/api/games?key=${process.env.API_KEY}`
     );
-    return response.data.results;
+    for (let i = 0; i < GAMES / 20; i++) {
+      games = [
+        ...games,
+        ...response.data.results.map(
+          ({ id, name, background_image, genres }) => {
+            return {
+              id,
+              name,
+              background_image,
+              genres: genres.map(({id, name}) => {
+                return {id, name};
+              }),
+            };
+          }
+        ),
+      ];
+      response = await axios.get(response.data.next);
+    }
+    return [...games, ...response.data.results];
   } catch (error) {
     return error;
   }
