@@ -3,6 +3,8 @@ import { getGenres } from "../../utils/genres";
 import { getPlatforms } from "../../utils/platforms";
 import { useEffect } from "react";
 
+import styled from "./CreateGame.module.css";
+
 const CreateGame = () => {
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
@@ -12,6 +14,8 @@ const CreateGame = () => {
     description: "",
     released: "2022-01-18",
     rating: 0,
+    genres: [],
+    platforms: [],
   });
 
   useEffect(() => {
@@ -22,7 +26,10 @@ const CreateGame = () => {
   const inputChange = (e) => {
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.name === "genres" || e.target.name === "platforms"
+          ? [...input[e.target.name], e.target.value]
+          : e.target.value,
     });
   };
 
@@ -31,67 +38,74 @@ const CreateGame = () => {
     console.log(input);
   };
 
-  console.log(platforms);
-
   return (
-    <form onSubmit={handleOnSubmit}>
-      <div>
-        <label>name</label>
-        <input
-          type="text"
-          name="name"
-          value={input.name}
-          placeholder="name..."
-          onChange={inputChange}
-          required={true}
-        />
-      </div>
-      <div>
-        <label>description</label>
-        <textarea
-          name="description"
-          value={input.description}
-          onChange={inputChange}
-          placeholder="Description..."
-          required={true}
-        ></textarea>
-      </div>
-      <div>
-        <label>released</label>
-        <input
-          type="date"
-          name="released"
-          value={input.released}
-          min="2022-01-01"
-          max="2022-12-31"
-          onChange={inputChange}
-        />
-      </div>
-      <div>
-        <label>rating</label>
-        <input
-          type="number"
-          name="rating"
-          min="0"
-          max="5"
-          value={input.rating}
-          onChange={inputChange}
-        />
-      </div>
-      {genres.map(({ id, name }) => (
-        <div key={id}>
-          <input type="checkbox" id={id} name={name} onChange={inputChange} />
-          <label htmlFor={id}>{name}</label>
-        </div>
-      ))}
-      {platforms.map(({ id, name }) => (
-        <div key={id}>
-          <input type="checkbox" id={id} name={name} onChange={inputChange} />
-          <label htmlFor={id}>{name}</label>
-        </div>
-      ))}
-      <input type="submit" />
-    </form>
+    <div className={styled.container}>
+      <form onSubmit={handleOnSubmit}>
+        <h1>Create Game</h1>
+        <fieldset>
+          <label>Name</label>
+          <input
+            type="text"
+            name="name"
+            value={input.name}
+            placeholder="name..."
+            onChange={inputChange}
+            required={true}
+          />
+
+          <label>Released</label>
+          <input
+            type="date"
+            name="released"
+            value={input.released}
+            min="2022-01-01"
+            max="2022-12-31"
+            onChange={inputChange}
+          />
+
+          <label>Rating</label>
+          <input
+            type="number"
+            name="rating"
+            min="0"
+            max="5"
+            value={input.rating}
+            onChange={inputChange}
+          />
+        </fieldset>
+        <fieldset>
+          <label>Description</label>
+          <textarea
+            name="description"
+            value={input.description}
+            onChange={inputChange}
+            placeholder="description..."
+            required={true}
+          ></textarea>
+        </fieldset>
+
+        <fieldset>
+          <label>Genres</label>
+          <select name="genres" onChange={inputChange}>
+            {genres.map(({ id, name }) => (
+              <option key={id} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+
+          <label>Platforms</label>
+          <select name="platforms" onChange={inputChange}>
+            {platforms.map(({ id, name }) => (
+              <option key={id} value={name}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </fieldset>
+        <button type="submit">SAVE</button>
+      </form>
+    </div>
   );
 };
 
