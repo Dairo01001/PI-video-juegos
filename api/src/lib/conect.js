@@ -7,7 +7,30 @@ const getGameId = async (idVideogame) => {
     const response = await axios.get(
       `https://api.rawg.io/api/games/${idVideogame}?key=${process.env.API_KEY}`
     );
-    return response.data;
+    const {
+      id,
+      name,
+      background_image,
+      genres,
+      description,
+      released,
+      rating,
+      platforms,
+    } = response.data;
+    return {
+      id,
+      name,
+      background_image,
+      genres: genres.map(({ id, name }) => {
+        return { id, name };
+      }),
+      description,
+      released,
+      rating,
+      platforms: platforms.map(({ platform }) => {
+        return { id: platform.id, name: platform.name };
+      }),
+    };
   } catch (error) {
     return error;
   }
@@ -39,8 +62,8 @@ const getAllGames = async () => {
               id,
               name,
               background_image,
-              genres: genres.map(({id, name}) => {
-                return {id, name};
+              genres: genres.map(({ id, name }) => {
+                return { id, name };
               }),
             };
           }

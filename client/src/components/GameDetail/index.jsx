@@ -31,8 +31,6 @@ const GameDetail = () => {
     platforms,
   } = gameDetail;
 
-  
-
   return (
     <div className={styled.card}>
       <div className={styled.thumbnail}>
@@ -55,9 +53,9 @@ const GameDetail = () => {
       </time>
       <div className={styled.uls}>
         <ul>
-          {platforms.map(({ platform }) => (
-            <li className={styled.platform} key={platform.name}>
-              {platform.name}
+          {platforms.map(({ name }) => (
+            <li className={styled.platform} key={name}>
+              {name}
             </li>
           ))}
         </ul>
