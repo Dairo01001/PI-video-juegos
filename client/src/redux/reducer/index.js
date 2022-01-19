@@ -1,4 +1,5 @@
-import { GET_GAMES, GET_GAME_DETAIL } from "../actions";
+import {GET_GAMES, GET_GAME_DETAIL} from "../actions";
+
 
 const initialState = {
   games: [],

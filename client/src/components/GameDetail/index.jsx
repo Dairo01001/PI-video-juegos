@@ -10,6 +10,7 @@ const GameDetail = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getGameDetail(id));
     // eslint-disable-next-line react-hooks/exhaustive-deps
