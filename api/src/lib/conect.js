@@ -48,30 +48,30 @@ const getGameName = async (name) => {
 };
 
 const getAllGames = async () => {
-  let games = [];
+  let pages = [1, 2, 3, 4, 5, 6];
   try {
-    let response = await axios.get(
-      `https://api.rawg.io/api/games?key=${process.env.API_KEY}`
+    let promises = await Promise.all(
+      pages.map((page) => {
+        return axios.get(
+          `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page=${page}`
+        );
+      })
     );
-    for (let i = 0; i < GAMES / 20; i++) {
-      games = [
-        ...games,
-        ...response.data.results.map(
-          ({ id, name, background_image, genres }) => {
-            return {
-              id,
-              name,
-              background_image,
-              genres: genres.map(({ id, name }) => {
-                return { id, name };
-              }),
-            };
-          }
-        ),
-      ];
-      response = await axios.get(response.data.next);
-    }
-    return [...games, ...response.data.results];
+    promises = promises.map((promise) => {
+      return promise.data.results.map(
+        ({ id, name, background_image, genres }) => {
+          return {
+            id,
+            name,
+            background_image,
+            genres: genres.map(({ id, name }) => {
+              return { id, name };
+            }),
+          };
+        }
+      );
+    });
+    return promises.flat();
   } catch (error) {
     return error;
   }

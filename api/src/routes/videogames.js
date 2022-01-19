@@ -23,9 +23,7 @@ router.get("/", async (req, res) => {
   if (name) {
     return res.json(await getGamesName(name));
   }
-  const allGames = await getGames();
-  console.log(allGames.length);
-  res.json(allGames);
+  res.json(await getGames());
 });
 
 module.exports = router;
