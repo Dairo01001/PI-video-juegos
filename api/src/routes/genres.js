@@ -9,8 +9,8 @@ router.get("/", async (req, res) => {
   }
   const genresApi = await getGenres();
   Promise.all(
-    genresApi.map((genreApi) => {
-      return genre.create({ id: genreApi.id, name: genreApi.name });
+    genresApi.map(({ id, name }) => {
+      return genre.create({ id, name });
     })
   ).then((results) => {
     return res.json(results);

@@ -11,4 +11,5 @@ module.exports = {
   videogames: require("./videogames.js"),
   genres: require("./genres.js"),
   platforms: require("./platforms.js"),
+  videogame: require("./videogame.js"),
 };
