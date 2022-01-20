@@ -4,18 +4,23 @@ import Card from "../Card";
 import Paginate from "../Paginate";
 import styled from "./Cards.module.css";
 
+import { paginate } from "../../utils/paginateGames.js";
+
 const Cards = (props) => {
   const page = useSelector((state) => state.page);
 
   const { games } = props;
 
+  if (games.length === 0) {
+    return <h1>Not found games...</h1>;
+  }
+
   return (
     <>
       <Paginate />
       <div className={styled.band}>
-        {games
-          .slice(GAMES_PER_PAGE * page, page * GAMES_PER_PAGE + GAMES_PER_PAGE)
-          .map(({ id, name, background_image, genres }) => (
+        {paginate(games, page, GAMES_PER_PAGE).map(
+          ({ id, name, background_image, genres }) => (
             <Card
               key={id}
               id={id}
@@ -23,7 +28,8 @@ const Cards = (props) => {
               background_image={background_image}
               genres={genres}
             />
-          ))}
+          )
+        )}
       </div>
     </>
   );

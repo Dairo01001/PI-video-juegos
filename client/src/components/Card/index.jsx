@@ -4,7 +4,7 @@ import styled from "./Card.module.css";
 
 const Card = ({ name, background_image, genres, id }) => {
   const divImg = {
-    backgroundImage: `url(${background_image ? background_image : "https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg"})`,
+    backgroundImage: `url(${background_image ? background_image : "https://images2.alphacoders.com/206/206292.jpg"})`,
   };
 
   return (

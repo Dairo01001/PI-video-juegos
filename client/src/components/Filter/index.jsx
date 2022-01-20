@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getGenres } from "../../utils/genres";
-import { filterGenre } from "../../redux/actions";
+import { filterGenre, setPage } from "../../redux/actions";
 
 const Filter = () => {
   const [genres, setGenres] = useState([]);
@@ -13,6 +13,7 @@ const Filter = () => {
 
   const inputChange = (e) => {
     dispatch(filterGenre(e.target.value));
+    dispatch(setPage(0));
   };
 
   return (

@@ -40,7 +40,7 @@ const GameDetail = () => {
           src={
             background_image
               ? background_image
-              : "https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg"
+              : "https://images2.alphacoders.com/206/206292.jpg"
           }
           alt={name}
         />
