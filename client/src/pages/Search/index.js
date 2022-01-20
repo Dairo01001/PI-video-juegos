@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Cards from "../Cards";
-import SearchBar from "../SearchBar";
-import styled from "./SortOrFilter.module.css";
+import Cards from "../../components/Cards";
+import SearchBar from "../../components/SearchBar";
+import styled from "./Search.module.css";
 import { setPage } from "../../redux/actions";
 
-const SortOrFilter = () => {
+const Search = () => {
   const sortOrFilter = useSelector((state) => state.sortOrFilter);
 
   const dispatch = useDispatch();
@@ -32,4 +32,4 @@ const SortOrFilter = () => {
   );
 };
 
-export default SortOrFilter;
+export default Search;

@@ -6,9 +6,8 @@ const Nav = () => {
     <header className={styled.head}>
       <h1>VIDEO GAMES</h1>
       <nav>
-        <Link to="/home/sortorfilter">Sort or Filter</Link>
         <Link to="/home/creategame">Create Game</Link>
-        <Link to="/home/sortorfilter">Buscar</Link>
+        <Link to="/home/search">Search</Link>
       </nav>
     </header>
   );

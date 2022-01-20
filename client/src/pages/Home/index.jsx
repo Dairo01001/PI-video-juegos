@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import Cards from "../Cards";
-import Nav from "../Nav";
+import Cards from "../../components/Cards";
+import Nav from "../../components/Nav";
 import { getGames, setPage } from "../../redux/actions";
 
 const Home = () => {

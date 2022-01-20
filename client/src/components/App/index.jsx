@@ -1,9 +1,9 @@
-import Home from "../Home";
-import Landing from "../Landing";
-import GameDetail from "../GameDetail";
-import CreateGame from "../CreateGame";
+import Home from "../../pages/Home";
+import Landing from "../../pages/Landing";
+import GameDetail from "../../pages/GameDetail";
+import CreateGame from "../../pages/CreateGame";
 import { Routes, Route } from "react-router-dom";
-import SortOrFilter from "../SortOrFilter";
+import Search from "../../pages/Search";
 
 const App = () => {
   return (
@@ -13,7 +13,7 @@ const App = () => {
         <Route path="home" element={<Home />} />
         <Route path="home/:id" element={<GameDetail />} />
         <Route path="home/creategame" element={<CreateGame />} />
-        <Route path="home/sortorfilter" element={<SortOrFilter />} />
+        <Route path="home/search" element={<Search/>} />
       </Routes>
     </div>
   );
