@@ -6,6 +6,8 @@ export const PREVIOUS_PAGE = "PREVIUS_PAGE";
 export const SEARCH_GAME = "SEARCH_GAME";
 export const GET_PAGE = "GET_PAGE";
 export const FILTER_GENRE = "FILTER_GENRE";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const ORDER_BY_RATING = "ORDER_BY_RATING";
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -58,4 +60,12 @@ export const setPage = (page) => {
 
 export const filterGenre = (genre) => {
   return { type: FILTER_GENRE, payload: genre };
+};
+
+export const orderByName = (payload) => {
+  return { type: ORDER_BY_NAME, payload };
+};
+
+export const orderByRating = (payload) => {
+  return { type: ORDER_BY_RATING, payload };
 };

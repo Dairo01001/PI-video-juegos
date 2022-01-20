@@ -59,7 +59,7 @@ const getAllGames = async () => {
     );
     promises = promises.map((promise) => {
       return promise.data.results.map(
-        ({ id, name, background_image, genres }) => {
+        ({ id, name, background_image, genres, rating }) => {
           return {
             id,
             name,
@@ -67,6 +67,7 @@ const getAllGames = async () => {
             genres: genres.map(({ id, name }) => {
               return { id, name };
             }),
+            rating,
           };
         }
       );
