@@ -11,6 +11,10 @@ const SortOrFilter = () => {
       <div className={styled.header}>
         <h1>Sort or Filter</h1>
         <SearchBar />
+        <select>
+          <option>mayor</option>
+          <option>menor</option>
+        </select>
       </div>
       <div className={styled.band}>
         {sortOrFilter.map(({ id, name, background_image, genres }) => (
