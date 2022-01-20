@@ -1,13 +1,12 @@
-const { INTEGER, STRING, TEXT, FLOAT } = require("sequelize");
+const { STRING, TEXT, FLOAT, DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
     "game",
     {
       id: {
-        type: INTEGER,
-        unique: true,
-        allowNull: false,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
       name: {
@@ -26,7 +25,7 @@ module.exports = (sequelize) => {
         type: FLOAT,
       },
       platforms: {
-        type: TEXT,
+        type: DataTypes.JSON,
         allowNull: false,
       },
     },

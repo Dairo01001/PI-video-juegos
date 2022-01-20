@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { game, Op } = require("../db.js");
+const { game, Op, genre } = require("../db.js");
 const { getGameName, getAllGames } = require("../lib/conect.js");
 
 const getGamesName = async (name) => {
@@ -9,12 +9,13 @@ const getGamesName = async (name) => {
         [Op.substring]: name,
       },
     },
+    include: genre,
   });
   return findGame.concat(await getGameName(name));
 };
 
 const getGames = async () => {
-  const findGames = await game.findAll();
+  const findGames = await game.findAll({ include: genre });
   return findGames.concat(await getAllGames());
 };
 

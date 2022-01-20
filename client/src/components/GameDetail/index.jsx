@@ -32,10 +32,20 @@ const GameDetail = () => {
     platforms,
   } = gameDetail;
 
+  console.log(gameDetail);
+
   return (
     <div className={styled.card}>
       <div className={styled.thumbnail}>
-        <img className={styled.img_left} src={background_image} alt={name} />
+        <img
+          className={styled.img_left}
+          src={
+            background_image
+              ? background_image
+              : "https://media.rawg.io/media/games/d58/d588947d4286e7b5e0e12e1bea7d9844.jpg"
+          }
+          alt={name}
+        />
       </div>
       <div className={styled.div_right}>
         <h1 className={styled.title}>{name}</h1>
