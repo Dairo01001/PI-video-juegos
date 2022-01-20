@@ -32,8 +32,6 @@ const GameDetail = () => {
     platforms,
   } = gameDetail;
 
-  console.log(gameDetail);
-
   return (
     <div className={styled.card}>
       <div className={styled.thumbnail}>

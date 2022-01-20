@@ -1,27 +1,12 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getGames } from "../../redux/actions";
+import { useSelector} from "react-redux";
 import { GAMES_PER_PAGE } from "../../utils/globalConstants.js";
 import Card from "../Card";
-import Loader from "../Loader";
 import styled from "./Cards.module.css";
 
-const Cards = () => {
-  const games = useSelector((state) => state.games);
+const Cards = (props) => {
   const page = useSelector((state) => state.page);
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (games.length < 100) {
-      dispatch(getGames());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (games.length === 0) {
-    return <Loader />;
-  }
+  const { games } = props;
 
   return (
     <div className={styled.band}>

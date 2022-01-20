@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Card from "../Card";
+import Cards from "../Cards";
 import SearchBar from "../SearchBar";
 import styled from "./SortOrFilter.module.css";
 
@@ -16,17 +16,7 @@ const SortOrFilter = () => {
           <option>menor</option>
         </select>
       </div>
-      <div className={styled.band}>
-        {sortOrFilter.map(({ id, name, background_image, genres }) => (
-          <Card
-            key={id}
-            id={id}
-            name={name}
-            background_image={background_image}
-            genres={genres}
-          />
-        ))}
-      </div>
+      <Cards games={sortOrFilter} />
     </>
   );
 };
