@@ -4,6 +4,7 @@ export const GET_GAME_DETAIL = "GET_GAME_DETAIL";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIOUS_PAGE = "PREVIUS_PAGE";
 export const SEARCH_GAME = "SEARCH_GAME";
+export const GET_PAGE = "GET_PAGE";
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -48,4 +49,8 @@ export const nextPage = () => {
 
 export const previousPage = () => {
   return { type: PREVIOUS_PAGE, payload: -1 };
+};
+
+export const setPage = (page) => {
+  return { type: GET_PAGE, payload: page };
 };

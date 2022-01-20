@@ -4,6 +4,7 @@ import {
   NEXT_PAGE,
   PREVIOUS_PAGE,
   SEARCH_GAME,
+  GET_PAGE,
 } from "../actions";
 
 const initialState = {
@@ -40,6 +41,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         sortOrFilter: payload,
+      };
+    case GET_PAGE:
+      return {
+        ...state,
+        page: payload,
       };
     default:
       return state;

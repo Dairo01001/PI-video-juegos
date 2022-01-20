@@ -1,0 +1,12 @@
+.head {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.head button {
+    padding: 5px;
+    width: 100px;
+    margin-right: 100px;
+}

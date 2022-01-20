@@ -1,10 +1,21 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Cards from "../Cards";
 import SearchBar from "../SearchBar";
 import styled from "./SortOrFilter.module.css";
+import { setPage } from "../../redux/actions";
 
 const SortOrFilter = () => {
   const sortOrFilter = useSelector((state) => state.sortOrFilter);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setPage(0));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

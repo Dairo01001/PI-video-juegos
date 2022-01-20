@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { nextPage, previousPage } from "../../redux/actions";
+import styled from "./Paginate.module.css";
 
 const Paginate = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,10 @@ const Paginate = () => {
   };
 
   return (
-    <>
-      <button onClick={previous}>PREVIOUS</button>
-      <button onClick={next}>NEXT</button>
-    </>
+    <div className={styled.head}>
+      <button onClick={previous}>❮ Previous</button>
+      <button onClick={next}>Next ❯</button>
+    </div>
   );
 };
 
