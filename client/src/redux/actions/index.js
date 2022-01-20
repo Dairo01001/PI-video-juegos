@@ -3,12 +3,26 @@ export const GET_GAMES = "GET_GAMES";
 export const GET_GAME_DETAIL = "GET_GAME_DETAIL";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIOUS_PAGE = "PREVIUS_PAGE";
+export const SEARCH_GAME = "SEARCH_GAME";
 
 export const getGames = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get("http://localhost:3001/videogames");
       dispatch({ type: GET_GAMES, payload: response.data });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const searchGame = (name) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/videogames/?name=${name}`
+      );
+      dispatch({ type: SEARCH_GAME, payload: response.data });
     } catch (error) {
       console.error(error);
     }
