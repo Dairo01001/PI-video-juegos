@@ -1,8 +1,21 @@
+import { useDispatch } from "react-redux";
+import { nextPage, previousPage } from "../../redux/actions";
+
 const Paginate = () => {
+  const dispatch = useDispatch();
+
+  const next = () => {
+    dispatch(nextPage());
+  };
+
+  const previous = () => {
+    dispatch(previousPage());
+  };
+
   return (
     <>
-      <button>Anterior</button>
-      <button>Sigiente</button>
+      <button onClick={previous}>PREVIOUS</button>
+      <button onClick={next}>NEXT</button>
     </>
   );
 };

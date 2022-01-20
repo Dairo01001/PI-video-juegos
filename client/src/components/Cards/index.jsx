@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getGames } from "../../redux/actions";
+import { GAMES_PER_PAGE } from "../../utils/globalConstants.js";
 import Card from "../Card";
 import Loader from "../Loader";
 import styled from "./Cards.module.css";
 
 const Cards = () => {
   const games = useSelector((state) => state.games);
+  const page = useSelector((state) => state.page);
 
   const dispatch = useDispatch();
 
@@ -23,15 +25,17 @@ const Cards = () => {
 
   return (
     <div className={styled.band}>
-      {games.map((game) => (
-        <Card
-          key={game.id}
-          id={game.id}
-          name={game.name}
-          background_image={game.background_image}
-          genres={game.genres}
-        />
-      ))}
+      {games
+        .slice(GAMES_PER_PAGE * page, page * GAMES_PER_PAGE + GAMES_PER_PAGE)
+        .map(({ id, name, background_image, genres }) => (
+          <Card
+            key={id}
+            id={id}
+            name={name}
+            background_image={background_image}
+            genres={genres}
+          />
+        ))}
     </div>
   );
 };
