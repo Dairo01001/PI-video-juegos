@@ -8,3 +8,14 @@ export const getGenres = async () => {
     console.error(error);
   }
 };
+
+export const filterByGenre = (arr, payload) => {
+  return arr.filter(({ genres }) => {
+    for (let i = 0; i < genres.length; i++) {
+      if (genres[i].name === payload) {
+        return true;
+      }
+    }
+    return false;
+  });
+};

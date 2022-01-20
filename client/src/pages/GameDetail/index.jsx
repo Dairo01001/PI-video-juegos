@@ -48,9 +48,9 @@ const GameDetail = () => {
       <div className={styled.div_right}>
         <h1 className={styled.title}>{name}</h1>
         <ul>
-          {genres.map((genre) => (
-            <li className={styled.genre} key={genre.id}>
-              {genre.name}
+          {genres.map(({id, name}) => (
+            <li className={styled.genre} key={name}>
+              {name}
             </li>
           ))}
         </ul>

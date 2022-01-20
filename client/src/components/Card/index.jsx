@@ -13,8 +13,8 @@ const Card = ({ name, background_image, genres, id }) => {
       <article>
         <h1>{name}</h1>
         <ul>
-          {genres.map((genre) => (
-            <li key={genre.id}>{genre.name}</li>
+          {genres.map(({name}) => (
+            <li key={name}>{name}</li>
           ))}
         </ul>
       </article>

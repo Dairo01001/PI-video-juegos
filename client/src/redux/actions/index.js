@@ -5,6 +5,7 @@ export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIOUS_PAGE = "PREVIUS_PAGE";
 export const SEARCH_GAME = "SEARCH_GAME";
 export const GET_PAGE = "GET_PAGE";
+export const FILTER_GENRE = "FILTER_GENRE";
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -53,4 +54,8 @@ export const previousPage = () => {
 
 export const setPage = (page) => {
   return { type: GET_PAGE, payload: page };
+};
+
+export const filterGenre = (genre) => {
+  return { type: FILTER_GENRE, payload: genre };
 };

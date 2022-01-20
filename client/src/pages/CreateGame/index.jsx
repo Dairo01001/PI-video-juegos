@@ -87,8 +87,8 @@ const CreateGame = () => {
         <fieldset>
           <label>Genres</label>
           <select name="genres" onChange={inputChange}>
-            {genres.map(({ id, name }) => (
-              <option key={id} value={name}>
+            {genres.map(({ name, id }) => (
+              <option key={name} value={name}>
                 {name}
               </option>
             ))}

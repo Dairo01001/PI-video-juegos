@@ -5,7 +5,10 @@ import {
   PREVIOUS_PAGE,
   SEARCH_GAME,
   GET_PAGE,
+  FILTER_GENRE,
 } from "../actions";
+
+import { filterByGenre } from "../../utils/genres";
 
 const initialState = {
   games: [],
@@ -46,6 +49,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         page: payload,
+      };
+    case FILTER_GENRE:
+      return {
+        ...state,
+        sortOrFilter: filterByGenre(state.games, payload),
       };
     default:
       return state;

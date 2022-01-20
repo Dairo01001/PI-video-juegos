@@ -4,6 +4,7 @@ import Cards from "../../components/Cards";
 import SearchBar from "../../components/SearchBar";
 import styled from "./Search.module.css";
 import { setPage } from "../../redux/actions";
+import Filter from "../../components/Filter";
 
 const Search = () => {
   const sortOrFilter = useSelector((state) => state.sortOrFilter);
@@ -22,10 +23,7 @@ const Search = () => {
       <div className={styled.header}>
         <h1>Sort or Filter</h1>
         <SearchBar />
-        <select>
-          <option>mayor</option>
-          <option>menor</option>
-        </select>
+        <Filter />
       </div>
       <Cards games={sortOrFilter} />
     </>
