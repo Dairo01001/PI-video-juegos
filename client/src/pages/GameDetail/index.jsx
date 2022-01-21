@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getGameDetail } from "../../redux/actions";
+import { getGameDetail, getGames } from "../../redux/actions";
 import Loader from "../../components/Loader";
 
 import styled from "./GameDetail.module.css";
@@ -13,6 +13,9 @@ const GameDetail = () => {
 
   useEffect(() => {
     dispatch(getGameDetail(id));
+    return () => {
+      dispatch(getGames())
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

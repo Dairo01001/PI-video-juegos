@@ -5,10 +5,14 @@ import { useEffect } from "react";
 
 import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
+import { useDispatch } from "react-redux";
+import { getGames } from "../../redux/actions";
 
 const CreateGame = () => {
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
+
+  const dispatch = useDispatch();
 
   const [input, setInput] = useState({
     name: "",
@@ -32,6 +36,10 @@ const CreateGame = () => {
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
+    return () => {
+      dispatch(getGames());
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const inputChange = (e) => {

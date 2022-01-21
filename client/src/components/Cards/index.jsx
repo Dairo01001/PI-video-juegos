@@ -19,13 +19,14 @@ const Cards = () => {
       <Paginate />
       <div className={styled.band}>
         {paginate(currentGames, page, GAMES_PER_PAGE).map(
-          ({ id, name, background_image, genres }) => (
+          ({ id, name, background_image, genres, rating }) => (
             <Card
               key={id}
               id={id}
               name={name}
               background_image={background_image}
               genres={genres}
+              rating={rating}
             />
           )
         )}
