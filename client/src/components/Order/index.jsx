@@ -5,7 +5,7 @@ import {
   ASCENDING_ORDER,
   DESCENDING_ORDER,
 } from "../../utils/globalConstants.js";
-import { orderByName, orderByRating } from "../../redux/actions";
+import { orderByName, orderByRating, setPage} from "../../redux/actions";
 
 const Order = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ const Order = () => {
         dispatch(orderByRating(e.target.value));
       }
     }
+    dispatch(setPage(1));
+    dispatch(setPage(0));
   };
 
   return (

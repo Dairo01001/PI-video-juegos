@@ -20,7 +20,6 @@ const Search = () => {
   return (
     <>
       <div className={styled.header}>
-        <h1>Sort or Filter</h1>
         <SearchBar />
         <Filter />
         <Order />
