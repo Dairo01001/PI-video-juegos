@@ -3,6 +3,7 @@ import { getGenres } from "../../utils/genres";
 import { getPlatforms } from "../../utils/platforms";
 import { useEffect } from "react";
 
+import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
 
 const CreateGame = () => {
@@ -18,6 +19,16 @@ const CreateGame = () => {
     platforms: [],
   });
 
+  const findId = (nameI) => {
+    return genres.find(({ name }) => {
+      return name === nameI;
+    }).id;
+  };
+
+  const findPlatform = (nameP) => {
+    return platforms.find(({ name }) => name === nameP);
+  };
+
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
@@ -27,15 +38,17 @@ const CreateGame = () => {
     setInput({
       ...input,
       [e.target.name]:
-        e.target.name === "genres" || e.target.name === "platforms"
-          ? [...input[e.target.name], e.target.value]
+        e.target.name === "genres"
+          ? [...input[e.target.name], findId(e.target.value)]
+          : e.target.name === "platforms"
+          ? [...input[e.target.name], findPlatform(e.target.value)]
           : e.target.value,
     });
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
+    await sendDB({ ...input, rating: Number(input.rating) });
   };
 
   return (
@@ -88,7 +101,7 @@ const CreateGame = () => {
           <label>Genres</label>
           <select name="genres" onChange={inputChange}>
             {genres.map(({ name, id }) => (
-              <option key={name} value={name}>
+              <option key={id} value={name}>
                 {name}
               </option>
             ))}
