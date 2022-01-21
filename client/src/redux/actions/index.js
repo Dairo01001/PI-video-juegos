@@ -8,6 +8,7 @@ export const GET_PAGE = "GET_PAGE";
 export const FILTER_GENRE = "FILTER_GENRE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_RATING = "ORDER_BY_RATING";
+export const ALL_GAMES = "ALL_GAMES";
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -18,6 +19,10 @@ export const getGames = () => {
       console.error(error);
     }
   };
+};
+
+export const allGames = () => {
+  return { type: ALL_GAMES, payload: "" };
 };
 
 export const searchGame = (name) => {

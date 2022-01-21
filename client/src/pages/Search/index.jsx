@@ -4,11 +4,15 @@ import Cards from "../../components/Cards";
 import SearchBar from "../../components/SearchBar";
 import Order from "../../components/Order";
 import styled from "./Search.module.css";
-import { setPage } from "../../redux/actions";
+import { setPage, allGames } from "../../redux/actions";
 import Filter from "../../components/Filter";
 
 const Search = () => {
   const dispatch = useDispatch();
+
+  const getGames = () => {
+    dispatch(allGames());
+  };
 
   useEffect(() => {
     return () => {
@@ -20,6 +24,7 @@ const Search = () => {
   return (
     <>
       <div className={styled.header}>
+        <button onClick={getGames}>all games</button>
         <SearchBar />
         <Filter />
         <Order />

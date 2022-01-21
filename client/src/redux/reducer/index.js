@@ -8,6 +8,7 @@ import {
   FILTER_GENRE,
   ORDER_BY_NAME,
   ORDER_BY_RATING,
+  ALL_GAMES,
 } from "../actions";
 
 import { ASCENDING_ORDER } from "../../utils/globalConstants.js";
@@ -28,6 +29,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         games: payload,
         currentGames: payload,
+      };
+    case ALL_GAMES:
+      return {
+        ...state,
+        currentGames: state.games,
       };
     case GET_GAME_DETAIL:
       return {
