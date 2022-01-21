@@ -3,7 +3,6 @@ import Landing from "../../pages/Landing";
 import GameDetail from "../../pages/GameDetail";
 import CreateGame from "../../pages/CreateGame";
 import { Routes, Route } from "react-router-dom";
-import Search from "../../pages/Search";
 
 const App = () => {
   return (
@@ -13,7 +12,6 @@ const App = () => {
         <Route path="home" element={<Home />} />
         <Route path="home/:id" element={<GameDetail />} />
         <Route path="home/creategame" element={<CreateGame />} />
-        <Route path="home/search" element={<Search/>} />
       </Routes>
     </div>
   );
