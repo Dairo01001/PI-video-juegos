@@ -17,7 +17,7 @@ import { filterByGenre } from "../../utils/genres";
 const initialState = {
   games: [],
   gameDetail: {},
-  sortOrFilter: [],
+  currentGames: [],
   page: 0,
 };
 
@@ -27,7 +27,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         games: payload,
-        sortOrFilter: payload,
+        currentGames: payload,
       };
     case GET_GAME_DETAIL:
       return {
@@ -47,7 +47,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case SEARCH_GAME:
       return {
         ...state,
-        sortOrFilter: payload,
+        currentGames: payload,
       };
     case GET_PAGE:
       return {
@@ -57,12 +57,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case FILTER_GENRE:
       return {
         ...state,
-        sortOrFilter: filterByGenre(state.games, payload),
+        currentGames: filterByGenre(state.games, payload),
       };
     case ORDER_BY_NAME:
       return {
         ...state,
-        sortOrFilter: state.sortOrFilter.sort((curr, next) => {
+        currentGames: state.currentGames.sort((curr, next) => {
           if (curr.name < next.name)
             return payload === ASCENDING_ORDER ? -1 : 1;
           if (curr.name > next.name)
@@ -73,7 +73,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case ORDER_BY_RATING:
       return {
         ...state,
-        sortOrFilter: state.sortOrFilter.sort((curr, next) =>
+        currentGames: state.currentGames.sort((curr, next) =>
           payload !== ASCENDING_ORDER
             ? curr.rating - next.rating
             : next.rating - curr.rating

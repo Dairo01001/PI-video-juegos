@@ -6,12 +6,11 @@ import styled from "./Cards.module.css";
 
 import { paginate } from "../../utils/paginateGames.js";
 
-const Cards = (props) => {
+const Cards = () => {
   const page = useSelector((state) => state.page);
+  const currentGames = useSelector((state) => state.currentGames);
 
-  const { games } = props;
-
-  if (games.length === 0) {
+  if (currentGames.length === 0) {
     return <h1>Not found games...</h1>;
   }
 
@@ -19,7 +18,7 @@ const Cards = (props) => {
     <>
       <Paginate />
       <div className={styled.band}>
-        {paginate(games, page, GAMES_PER_PAGE).map(
+        {paginate(currentGames, page, GAMES_PER_PAGE).map(
           ({ id, name, background_image, genres }) => (
             <Card
               key={id}

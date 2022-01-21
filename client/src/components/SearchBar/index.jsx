@@ -11,15 +11,16 @@ const SearchBar = () => {
     setInput(e.target.value);
   };
 
-  const search = () => {
+  const search = (e) => {
+    e.preventDefault();
     dispatch(searchGame(input));
   };
 
   return (
-    <section>
+    <form onSubmit={search}>
       <input type="text" value={input} onChange={onChange}></input>
-      <button onClick={search}>SEARCH</button>
-    </section>
+      <input type="submit"></input>
+    </form>
   );
 };
 
