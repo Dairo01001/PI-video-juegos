@@ -23,6 +23,12 @@ module.exports = (sequelize) => {
       },
       rating: {
         type: FLOAT,
+        defaultValue: 0,
+        set(value) {
+          if (typeof value !== "number") {
+            throw new Error("rating debe ser un number!");
+          }
+        },
       },
       platforms: {
         type: DataTypes.JSON,
