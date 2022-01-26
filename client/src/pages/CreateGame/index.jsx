@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { getGenres } from "../../utils/genres";
 import { getPlatforms } from "../../utils/platforms";
 import { useEffect } from "react";
+import { getGames } from "../../redux/actions";
 
 import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
@@ -37,6 +39,7 @@ const CreateGame = () => {
   document.title = "Games | Create Game";
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
+  const dispatch = useDispatch();
 
   const [err, setErr] = useState({
     name: "",
@@ -66,6 +69,9 @@ const CreateGame = () => {
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
+    return () => {
+      dispatch(getGames());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -97,7 +103,17 @@ const CreateGame = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     await sendDB({ ...input, rating: Number(input.rating) });
+    setInput({
+      name: "",
+      description: "",
+      released: "2022-01-18",
+      rating: 0,
+      genres: [],
+      platforms: [],
+    });
   };
+
+  console.log(input);
 
   return (
     <div className={styled.container}>
