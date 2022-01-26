@@ -9,6 +9,7 @@ export const FILTER_GENRE = "FILTER_GENRE";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_RATING = "ORDER_BY_RATING";
 export const ALL_GAMES = "ALL_GAMES";
+export const GET_GAMES_DB = "GET_GAMES_DB";
 
 export const getGames = () => {
   return async (dispatch) => {
@@ -73,4 +74,8 @@ export const orderByName = (payload) => {
 
 export const orderByRating = (payload) => {
   return { type: ORDER_BY_RATING, payload };
+};
+
+export const getGamesDB = () => {
+  return { type: GET_GAMES_DB, payload: "" };
 };

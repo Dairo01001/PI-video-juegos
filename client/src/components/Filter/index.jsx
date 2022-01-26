@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getGenres } from "../../utils/genres";
-import { filterGenre, setPage } from "../../redux/actions";
+import { filterGenre, setPage, getGamesDB } from "../../redux/actions";
 import { DEFAULT } from "../../utils/globalConstants.js";
 
 const Filter = () => {
@@ -19,6 +19,10 @@ const Filter = () => {
     dispatch(setPage(0));
   };
 
+  const getGameDB = () => {
+    dispatch(getGamesDB());
+  };
+
   return (
     <>
       <label htmlFor="genres">Genres</label>
@@ -30,7 +34,7 @@ const Filter = () => {
           </option>
         ))}
       </select>
-      <button>Games DB</button>
+      <button onClick={getGameDB}>Games DB</button>
     </>
   );
 };

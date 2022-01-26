@@ -9,6 +9,7 @@ import {
   ORDER_BY_NAME,
   ORDER_BY_RATING,
   ALL_GAMES,
+  GET_GAMES_DB,
 } from "../actions";
 
 import { ASCENDING_ORDER } from "../../utils/globalConstants.js";
@@ -84,6 +85,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
             ? curr.rating - next.rating
             : next.rating - curr.rating
         ),
+      };
+    case GET_GAMES_DB:
+      return {
+        ...state,
+        currentGames: state.games.filter(({ id }) => id.length > 10),
       };
     default:
       return state;
