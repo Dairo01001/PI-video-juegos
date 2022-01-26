@@ -4,7 +4,7 @@ import Order from "../Order";
 import Filter from "../Filter";
 import SearchBar from "../SearchBar";
 import { Link } from "react-router-dom";
-import { allGames, setPage } from "../../redux/actions";
+import { allGames, setPage, getGamesDB } from "../../redux/actions";
 import styled from "./Header.module.css";
 
 const Header = () => {
@@ -12,6 +12,10 @@ const Header = () => {
 
   const getGames = () => {
     dispatch(allGames());
+  };
+
+  const getGameDB = () => {
+    dispatch(getGamesDB());
   };
 
   useEffect(() => {
@@ -27,6 +31,7 @@ const Header = () => {
       <SearchBar />
       <Link to="/home/creategame">Create Game</Link>
       <button onClick={getGames}>all games</button>
+      <button onClick={getGameDB}>Games DB</button>
       <Filter />
       <Order />
     </header>

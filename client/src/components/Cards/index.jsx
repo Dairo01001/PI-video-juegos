@@ -5,14 +5,16 @@ import Paginate from "../Paginate";
 import styled from "./Cards.module.css";
 
 import { paginate } from "../../utils/paginateGames.js";
+import Loader from "../Loader/index.jsx";
 
 const Cards = () => {
   const page = useSelector((state) => state.page);
   const currentGames = useSelector((state) => state.currentGames);
+  const games = useSelector((state) => state.games);
 
-  if (currentGames.length === 0) {
-    return <h1>Not found games...</h1>;
-  }
+  if (games.length === 0) return <Loader />;
+
+  if (currentGames.length === 0) return <h1>Games not Found</h1>;
 
   return (
     <>

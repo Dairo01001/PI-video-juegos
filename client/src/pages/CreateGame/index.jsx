@@ -5,8 +5,6 @@ import { useEffect } from "react";
 
 import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
-import { useDispatch } from "react-redux";
-import { getGames } from "../../redux/actions";
 import GoHome from "../../components/GoHome";
 
 export const validate = (input) => {
@@ -36,17 +34,16 @@ export const validate = (input) => {
 };
 
 const CreateGame = () => {
+  document.title = "Games | Create Game";
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
-
-  const dispatch = useDispatch();
 
   const [err, setErr] = useState({
     name: "",
     description: "",
     rating: 0,
   });
-  
+
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -69,9 +66,6 @@ const CreateGame = () => {
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
-    return () => {
-      dispatch(getGames());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -176,7 +170,7 @@ const CreateGame = () => {
         </fieldset>
         <button type="submit">SAVE</button>
       </form>
-      <GoHome/>
+      <GoHome />
     </div>
   );
 };
