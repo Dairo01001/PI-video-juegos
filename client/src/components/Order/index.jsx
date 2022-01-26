@@ -23,7 +23,7 @@ const Order = () => {
   };
 
   return (
-    <>
+    <div>
       <label htmlFor="name">Name</label>
       <select name="name" onChange={onChange}>
         <option value={DEFAULT}>...</option>
@@ -37,7 +37,7 @@ const Order = () => {
         <option value={ASCENDING_ORDER}>Mayor a Menor</option>
         <option value={DESCENDING_ORDER}>Menor a Mayor</option>
       </select>
-    </>
+    </div>
   );
 };
 

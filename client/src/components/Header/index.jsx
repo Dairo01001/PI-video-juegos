@@ -5,6 +5,7 @@ import Filter from "../Filter";
 import SearchBar from "../SearchBar";
 import { Link } from "react-router-dom";
 import { allGames, setPage } from "../../redux/actions";
+import styled from "./Header.module.css";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -21,10 +22,11 @@ const Header = () => {
   }, []);
 
   return (
-    <header>
+    <header className={styled.header}>
+      <h1>Video Games</h1>
+      <SearchBar />
       <Link to="/home/creategame">Create Game</Link>
       <button onClick={getGames}>all games</button>
-      <SearchBar />
       <Filter />
       <Order />
     </header>
