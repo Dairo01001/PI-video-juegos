@@ -1,11 +1,11 @@
 const axios = require("axios").default;
-require("dotenv").config({ path: process.cwd().replace("src/lib", ".env") });
+const config = require("../config");
 const GAMES = 100;
 
 const getGameId = async (idVideogame) => {
   try {
     const response = await axios.get(
-      `https://api.rawg.io/api/games/${idVideogame}?key=${process.env.API_KEY}`
+      `https://api.rawg.io/api/games/${idVideogame}?key=${config.API.KEY}`
     );
     const {
       id,
@@ -39,7 +39,7 @@ const getGameId = async (idVideogame) => {
 const getGameName = async (name) => {
   try {
     const response = await axios.get(
-      `https://api.rawg.io/api/games?search=${name}&key=${process.env.API_KEY}`
+      `https://api.rawg.io/api/games?search=${name}&key=${config.API.KEY}`
     );
     return response.data.results;
   } catch (error) {
@@ -53,7 +53,7 @@ const getAllGames = async () => {
     let promises = await Promise.all(
       pages.map((page) => {
         return axios.get(
-          `https://api.rawg.io/api/games?key=${process.env.API_KEY}&page=${page}`
+          `https://api.rawg.io/api/games?key=${config.API.KEY}&page=${page}`
         );
       })
     );
@@ -81,9 +81,11 @@ const getAllGames = async () => {
 const getGenres = async () => {
   try {
     const response = await axios.get(
-      `https://api.rawg.io/api/genres?key=${process.env.API_KEY}`
+      `https://api.rawg.io/api/genres?key=${config.API.KEY}`
     );
-    return response.data.results;
+    return response.data.results.map(({ id, name }) => {
+      return { id, name };
+    });
   } catch (error) {
     return error;
   }
@@ -93,7 +95,7 @@ const getPlatforms = async () => {
   let platforms = [];
   try {
     let response = await axios.get(
-      `https://api.rawg.io/api/platforms?key=${process.env.API_KEY}`
+      `https://api.rawg.io/api/platforms?key=${config.API.KEY}`
     );
     while (response.data.next) {
       platforms = [

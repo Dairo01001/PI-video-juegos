@@ -1,6 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
-require("./db.js");
+const config = require("./config");
 
 const {
   index,
@@ -10,12 +10,14 @@ const {
   videogame,
 } = require("./routes/index.js");
 
-const server = express();
-server.name = "API";
+const app = express();
 
-server.use(morgan("dev"));
-server.use(express.json());
-server.use((req, res, next) => {
+app.set("port", config.SERVER_PORT);
+
+app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
@@ -26,10 +28,10 @@ server.use((req, res, next) => {
   next();
 });
 
-server.use("/", index);
-server.use("/videogame", videogame);
-server.use("/videogames", videogames);
-server.use("/genres", genres);
-server.use("/platforms", platforms);
+app.use("/", index);
+app.use("/videogame", videogame);
+app.use("/videogames", videogames);
+app.use("/genres", genres);
+app.use("/platforms", platforms);
 
-module.exports = server;
+module.exports = app;

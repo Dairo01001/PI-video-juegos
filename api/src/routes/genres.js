@@ -1,20 +1,9 @@
 const router = require("express").Router();
-const { getGenres } = require("../lib/conect.js");
 const { genre } = require("../db.js");
 
 router.get("/", async (req, res) => {
   const genres = await genre.findAll();
-  if (genres.length !== 0) {
-    return res.json(genres);
-  }
-  const genresApi = await getGenres();
-  Promise.all(
-    genresApi.map(({ id, name }) => {
-      return genre.create({ id, name });
-    })
-  ).then((results) => {
-    return res.json(results);
-  });
+  return res.json(genres);
 });
 
 module.exports = router;
