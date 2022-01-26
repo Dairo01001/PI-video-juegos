@@ -8,12 +8,44 @@ import styled from "./CreateGame.module.css";
 import { useDispatch } from "react-redux";
 import { getGames } from "../../redux/actions";
 
+export const validate = (input) => {
+  let err = {};
+
+  if (!input.name) {
+    err.name = "Name is required!";
+  } else if (!/[A-Za-z0-9]+/g.test(input.name)) {
+    err.name = "Name is invalid!";
+  }
+
+  if (!input.description) {
+    err.description = "Description is required!";
+  } else if (!/[A-Za-z0-9]+/g.test(input.description)) {
+    err.description = "Description is invalid!";
+  } else if (err.description?.length < 50) {
+    err.description = "Length mayor a 50 characters!";
+  }
+
+  if (!input.rating) {
+    err.rating = "Rating is required!";
+  } else if (input.rating > 5 || input.rating < 0) {
+    err.rating = "Rating is invalid!";
+  }
+
+  return err;
+};
+
 const CreateGame = () => {
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
 
   const dispatch = useDispatch();
 
+  const [err, setErr] = useState({
+    name: "",
+    description: "",
+    rating: 0,
+  });
+  
   const [input, setInput] = useState({
     name: "",
     description: "",
@@ -38,8 +70,8 @@ const CreateGame = () => {
     getPlatforms().then(setPlatforms);
     return () => {
       dispatch(getGames());
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const inputChange = (e) => {
@@ -52,6 +84,19 @@ const CreateGame = () => {
           ? [...input[e.target.name], findPlatform(e.target.value)]
           : e.target.value,
     });
+
+    if (
+      e.target.name === "name" ||
+      e.target.name === "description" ||
+      e.target.name === "rating"
+    ) {
+      setErr(
+        validate({
+          ...input,
+          [e.target.name]: e.target.value,
+        })
+      );
+    }
   };
 
   const handleOnSubmit = async (e) => {
@@ -73,6 +118,7 @@ const CreateGame = () => {
             onChange={inputChange}
             required={true}
           />
+          {err.name ? <span>{err.name}</span> : null}
 
           <label>Released</label>
           <input
@@ -93,7 +139,9 @@ const CreateGame = () => {
             value={input.rating}
             onChange={inputChange}
           />
+          {err.rating ? <span>{err.rating}</span> : null}
         </fieldset>
+
         <fieldset>
           <label>Description</label>
           <textarea
@@ -103,6 +151,7 @@ const CreateGame = () => {
             placeholder="description..."
             required={true}
           ></textarea>
+          {err.description ? <span>{err.description}</span> : null}
         </fieldset>
 
         <fieldset>
