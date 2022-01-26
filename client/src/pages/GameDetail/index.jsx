@@ -5,6 +5,7 @@ import { getGameDetail, getGames } from "../../redux/actions";
 import Loader from "../../components/Loader";
 
 import styled from "./GameDetail.module.css";
+import GoHome from "../../components/GoHome";
 
 const GameDetail = () => {
   const { id } = useParams();
@@ -36,45 +37,48 @@ const GameDetail = () => {
   } = gameDetail;
 
   return (
-    <div className={styled.card}>
-      <div className={styled.thumbnail}>
-        <img
-          className={styled.img_left}
-          src={
-            background_image
-              ? background_image
-              : "https://images2.alphacoders.com/206/206292.jpg"
-          }
-          alt={name}
-        />
+    <div>
+      <div className={styled.card}>
+        <div className={styled.thumbnail}>
+          <img
+            className={styled.img_left}
+            src={
+              background_image
+                ? background_image
+                : "https://images2.alphacoders.com/206/206292.jpg"
+            }
+            alt={name}
+          />
+        </div>
+        <div className={styled.div_right}>
+          <h1 className={styled.title}>{name}</h1>
+          <ul>
+            {genres.map(({ id, name }) => (
+              <li className={styled.genre} key={name}>
+                {name}
+              </li>
+            ))}
+          </ul>
+          <div className={styled.separator}></div>
+          <div dangerouslySetInnerHTML={{ __html: description }}></div>
+        </div>
+        <time className={styled.date} dateTime={released}>
+          {released}
+        </time>
+        <div className={styled.uls}>
+          <ul>
+            {platforms.map(({ name }) => (
+              <li className={styled.platform} key={name}>
+                {name}
+              </li>
+            ))}
+          </ul>
+          <span>
+            <strong>{rating}</strong>/5
+          </span>
+        </div>
       </div>
-      <div className={styled.div_right}>
-        <h1 className={styled.title}>{name}</h1>
-        <ul>
-          {genres.map(({ id, name }) => (
-            <li className={styled.genre} key={name}>
-              {name}
-            </li>
-          ))}
-        </ul>
-        <div className={styled.separator}></div>
-        <div dangerouslySetInnerHTML={{ __html: description }}></div>
-      </div>
-      <time className={styled.date} dateTime={released}>
-        {released}
-      </time>
-      <div className={styled.uls}>
-        <ul>
-          {platforms.map(({ name }) => (
-            <li className={styled.platform} key={name}>
-              {name}
-            </li>
-          ))}
-        </ul>
-        <span>
-          <strong>{rating}</strong>/5
-        </span>
-      </div>
+      <GoHome/>
     </div>
   );
 };

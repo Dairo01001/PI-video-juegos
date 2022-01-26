@@ -7,6 +7,7 @@ import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
 import { useDispatch } from "react-redux";
 import { getGames } from "../../redux/actions";
+import GoHome from "../../components/GoHome";
 
 export const validate = (input) => {
   let err = {};
@@ -175,6 +176,7 @@ const CreateGame = () => {
         </fieldset>
         <button type="submit">SAVE</button>
       </form>
+      <GoHome/>
     </div>
   );
 };

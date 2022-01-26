@@ -28,7 +28,7 @@ const Filter = () => {
     <div className={styled.container}>
       <label htmlFor="genres">Filter</label>
       <select name="genres" onChange={inputChange}>
-        <option value={DEFAULT}>...</option>
+        <option value={DEFAULT}>Select...</option>
         {genres.map(({ id, name }) => (
           <option key={id} value={name}>
             {name}
