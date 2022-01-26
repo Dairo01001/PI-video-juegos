@@ -86,3 +86,8 @@
   font-size: 0.7rem;
   color: #7b7b7b;
 }
+
+.card strong {
+  color: rgb(174, 35, 179);
+  font-size: 1.2em;
+}

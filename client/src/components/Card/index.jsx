@@ -13,7 +13,9 @@ const Card = ({ name, background_image, genres, id, rating }) => {
   return (
     <NavLink to={`/home/${id}`} className={styled.card}>
       <div style={divImg}>
-      <span>{rating}</span>
+        <span>
+          <strong>{rating}</strong>/5
+        </span>
       </div>
       <article>
         <h1>{name}</h1>

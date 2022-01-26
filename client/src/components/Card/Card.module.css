@@ -54,3 +54,8 @@
   padding: 3px;
   background-color: rgba(245, 240, 240, 0.5);
 }
+
+.card strong {
+  color: rgb(174, 35, 179);
+  font-size: 1.2em;
+}

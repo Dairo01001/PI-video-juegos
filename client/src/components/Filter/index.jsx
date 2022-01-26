@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { getGenres } from "../../utils/genres";
 import { filterGenre, setPage, getGamesDB } from "../../redux/actions";
 import { DEFAULT } from "../../utils/globalConstants.js";
+import styled from "./Filter.module.css";
 
 const Filter = () => {
   const [genres, setGenres] = useState([]);
@@ -24,7 +25,7 @@ const Filter = () => {
   };
 
   return (
-    <>
+    <div className={styled.container}>
       <label htmlFor="genres">Filter</label>
       <select name="genres" onChange={inputChange}>
         <option value={DEFAULT}>...</option>
@@ -35,7 +36,7 @@ const Filter = () => {
         ))}
       </select>
       <button onClick={getGameDB}>Games DB</button>
-    </>
+    </div>
   );
 };
 

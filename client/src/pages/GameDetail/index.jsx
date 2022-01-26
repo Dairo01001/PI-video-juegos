@@ -14,8 +14,8 @@ const GameDetail = () => {
   useEffect(() => {
     dispatch(getGameDetail(id));
     return () => {
-      dispatch(getGames())
-    }
+      dispatch(getGames());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -51,7 +51,7 @@ const GameDetail = () => {
       <div className={styled.div_right}>
         <h1 className={styled.title}>{name}</h1>
         <ul>
-          {genres.map(({id, name}) => (
+          {genres.map(({ id, name }) => (
             <li className={styled.genre} key={name}>
               {name}
             </li>
@@ -71,7 +71,9 @@ const GameDetail = () => {
             </li>
           ))}
         </ul>
-        <p>{rating}</p>
+        <span>
+          <strong>{rating}</strong>/5
+        </span>
       </div>
     </div>
   );
