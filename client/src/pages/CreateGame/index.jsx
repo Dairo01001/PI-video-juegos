@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { getGenres } from "../../utils/genres";
 import { getPlatforms } from "../../utils/platforms";
 import { useEffect } from "react";
-import { getGames } from "../../redux/actions";
 
 import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
@@ -22,8 +20,8 @@ export const validate = (input) => {
     err.description = "Description is required!";
   } else if (!/[A-Za-z0-9]+/g.test(input.description)) {
     err.description = "Description is invalid!";
-  } else if (err.description?.length < 50) {
-    err.description = "Length mayor a 50 characters!";
+  } else if (input.description?.length < 50) {
+    err.description = "Longitud mayor a 50 characters!";
   }
 
   if (!input.rating) {
@@ -39,7 +37,6 @@ const CreateGame = () => {
   document.title = "Games | Create Game";
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
-  const dispatch = useDispatch();
 
   const [err, setErr] = useState({
     name: "",
@@ -69,9 +66,6 @@ const CreateGame = () => {
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
-    return () => {
-      dispatch(getGames());
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -102,7 +96,11 @@ const CreateGame = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    await sendDB({ ...input, rating: Number(input.rating) });
+    await sendDB({
+      ...input,
+      rating: Number(input.rating),
+      description: <p>{input.description}</p>,
+    });
     setInput({
       name: "",
       description: "",
