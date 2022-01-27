@@ -89,7 +89,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case GET_GAMES_DB:
       return {
         ...state,
-        currentGames: payload,
+        currentGames: state.games.filter(({ id }) => {
+          return id.length > 10;
+        }),
       };
     default:
       return state;

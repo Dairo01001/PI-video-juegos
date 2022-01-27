@@ -20,14 +20,11 @@ const getGames = async () => {
 };
 
 router.get("/", async (req, res) => {
-  const { name, db } = req.query;
+  const { name } = req.query;
   if (name) {
-    return res.json(await getGamesName(name));
+    return res.status(200).json(await getGamesName(name));
   }
-  if (db) {
-    return res.json(await game.findAll({ include: genre }));
-  }
-  res.json(await getGames());
+  res.status(200).json(await getGames());
 });
 
 module.exports = router;

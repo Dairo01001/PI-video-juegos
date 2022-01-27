@@ -76,15 +76,6 @@ export const orderByRating = (payload) => {
   return { type: ORDER_BY_RATING, payload };
 };
 
-export const getGamesDB = (db) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3001/videogames/?db=${db}`
-      );
-      dispatch({ type: GET_GAMES_DB, payload: response.data });
-    } catch (error) {
-      console.error(error);
-    }
-  };
+export const getGamesDB = () => {
+  return { type: GET_GAMES_DB, payload: "" };
 };

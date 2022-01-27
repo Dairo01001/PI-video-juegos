@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getGenres } from "../../utils/genres";
 import { getPlatforms } from "../../utils/platforms";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
 import GoHome from "../../components/GoHome";
+import { getGames } from "../../redux/actions";
 
 export const validate = (input) => {
   let err = {};
@@ -38,6 +39,8 @@ const CreateGame = () => {
   const [genres, setGenres] = useState([]);
   const [platforms, setPlatforms] = useState([]);
 
+  const dispatch = useDispatch();
+
   const [err, setErr] = useState({
     name: "",
     description: "",
@@ -56,6 +59,9 @@ const CreateGame = () => {
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
+    return () => {
+      dispatch(getGames());
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
