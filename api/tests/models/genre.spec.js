@@ -29,7 +29,7 @@ describe("Model Genre Testing", () => {
 
       it("Intenta crear un genre sin 'name'", (done) => {
         genre
-          .create({ id: 1 })
+          .create({ id: 10 })
           .then(() => done("No deberia haberse creado sin 'name'!"))
           .catch(() => done());
       });
