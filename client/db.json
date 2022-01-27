@@ -1,0 +1,21 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "background_image": "https://images2.alphacoders.com/206/206292.jpg",
+      "name": "Tarzan",
+      "genres": [{ "name": "Action", "id": 1 }],
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "background_image": "https://images2.alphacoders.com/206/206292.jpg",
+      "name": "Hercules",
+      "genres": [
+        { "name": "Action", "id": 1 },
+        { "name": "Aventure", "id": 2 }
+      ],
+      "rating": 4
+    }
+  ]
+}

@@ -20,7 +20,7 @@ const Card = ({ name, background_image, genres, id, rating }) => {
       <article>
         <h1>{name}</h1>
         <ul>
-          {genres.map(({ name }) => (
+          {genres?.map(({ name }) => (
             <li key={name}>{name}</li>
           ))}
         </ul>
