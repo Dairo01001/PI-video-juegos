@@ -1,6 +1,6 @@
 const { sequelize, genre } = require("../../src/db");
 
-xdescribe("Model Genre Testing", () => {
+describe("Model Genre Testing", () => {
   afterAll(async () => {
     await sequelize.sync({ force: true });
     sequelize.close();

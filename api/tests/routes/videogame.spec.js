@@ -5,7 +5,7 @@ const { expect } = require("chai");
 
 const api = supertest(app);
 
-xdescribe("Test routes /videogame", () => {
+describe("Test routes /videogame", () => {
   afterAll(async () => {
     await sequelize.sync({ force: true });
     sequelize.close();

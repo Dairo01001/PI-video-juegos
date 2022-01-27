@@ -4,7 +4,7 @@ const app = require("../../src/app");
 
 const api = supertest(app);
 
-xdescribe("Test routes /genres", () => {
+describe("Test routes /genres", () => {
   afterAll(async () => {
     await sequelize.sync({ force: true });
     sequelize.close();

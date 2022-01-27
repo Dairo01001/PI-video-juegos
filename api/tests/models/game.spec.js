@@ -1,6 +1,6 @@
 const { sequelize, game } = require("../../src/db");
 
-xdescribe("Model Game Testing", () => {
+describe("Model Game Testing", () => {
   afterAll(async () => {
     await sequelize.sync({ force: true });
     sequelize.close();
