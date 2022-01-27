@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
         name,
         description,
         released: released || "",
-        rating: released || 0,
+        rating: rating || 0,
         platforms,
       },
     });

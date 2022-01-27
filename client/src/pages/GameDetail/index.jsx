@@ -66,7 +66,7 @@ const GameDetail = () => {
         </time>
         <div className={styled.uls}>
           <ul>
-            {platforms.map(({ name }) => (
+            {platforms.map((name) => (
               <li className={styled.platform} key={name}>
                 {name}
               </li>

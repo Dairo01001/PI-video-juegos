@@ -53,16 +53,6 @@ const CreateGame = () => {
     platforms: [],
   });
 
-  const findId = (nameI) => {
-    return genres.find(({ name }) => {
-      return name === nameI;
-    }).id;
-  };
-
-  const findPlatform = (nameP) => {
-    return platforms.find(({ name }) => name === nameP);
-  };
-
   useEffect(() => {
     getGenres().then(setGenres);
     getPlatforms().then(setPlatforms);
@@ -73,10 +63,8 @@ const CreateGame = () => {
     setInput({
       ...input,
       [e.target.name]:
-        e.target.name === "genres"
-          ? [...input[e.target.name], findId(e.target.value)]
-          : e.target.name === "platforms"
-          ? [...input[e.target.name], findPlatform(e.target.value)]
+        e.target.name === "genres" || e.target.name === "platforms"
+          ? [...input[e.target.name], e.target.value]
           : e.target.value,
     });
 
@@ -99,7 +87,9 @@ const CreateGame = () => {
     await sendDB({
       ...input,
       rating: Number(input.rating),
-      description: <p>{input.description}</p>,
+      description: `<p>${input.description}</p>`,
+      genres: [...new Set(input.genres)],
+      platforms: [...new Set(input.platforms)],
     });
     setInput({
       name: "",
@@ -110,8 +100,6 @@ const CreateGame = () => {
       platforms: [],
     });
   };
-
-  console.log(input);
 
   return (
     <div className={styled.container}>
