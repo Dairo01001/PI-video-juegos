@@ -12,28 +12,57 @@ const getGamesId = async (idVideogame) => {
   return await getGameId(idVideogame);
 };
 
+router.get("/", (req, res) => {
+  res.status(204).end();
+});
+
 router.get("/:idVideogame", async (req, res) => {
   const { idVideogame } = req.params;
-  res.json(await getGamesId(idVideogame));
+  res.status(200).json(await getGamesId(idVideogame));
 });
 
 router.post("/", async (req, res) => {
   const { name, description, released, rating, platforms, genres } = req.body;
-  try {
-    const createdGame = await game.create({
-      name,
-      description,
-      released,
-      rating,
-      platforms,
+
+  if (!name || !description || !platforms) {
+    return res.status(400).json({
+      error: "'name', 'description' y 'platforms' son requeridas",
     });
-    Promise.all(genres.map((genre) => createdGame.addGenres(genre))).then(
-      () => {
-        res.json(createdGame);
-      }
-    );
-  } catch (error) {
-    res.json(error);
+  }
+
+  try {
+    const [creatingGame, created] = await game.findOrCreate({
+      where: {
+        name,
+      },
+      defaults: {
+        name,
+        description,
+        released: released || "",
+        rating: released || 0,
+        platforms,
+      },
+    });
+
+    if (!created) {
+      return res
+        .status(400)
+        .json({ error: "El Juego ya se encuentra en la base de datos." });
+    }
+
+    if (genres) {
+      const genresDataBase = await genre.findAll({
+        where: {
+          name: genres,
+        },
+      });
+      await creatingGame.addGenres(genresDataBase);
+    }
+
+    res.status(201).json(creatingGame);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({ error: err });
   }
 });
 
