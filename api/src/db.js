@@ -5,7 +5,9 @@ const modelPlatform = require("./models/Platform.js");
 const config = require("./config");
 
 const sequelize = new Sequelize(
-  `postgres://${config.DB.USER}:${config.DB.PASSWORD}@${config.DB.HOST}/videogames`,
+  `postgres://${config.DB.USER}:${config.DB.PASSWORD}@${config.DB.HOST}/${
+    process.env.NODE_ENV === "test" ? "videogamestest" : config.DB.NAME
+  }`,
   {
     logging: false,
     native: false,

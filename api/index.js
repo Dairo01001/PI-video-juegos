@@ -1,5 +1,5 @@
 const app = require("./src/app.js");
-const { sequelize, genre } = require("./src/db.js");
+const { sequelize } = require("./src/db.js");
 
 sequelize.sync({ force: true }).then(() => {
   app.listen(app.get("port"), () => {
