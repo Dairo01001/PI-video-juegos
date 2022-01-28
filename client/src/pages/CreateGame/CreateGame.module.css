@@ -1,10 +1,11 @@
 .container {
-  color: #384047;
+  color: black;
 }
 
 .container form {
   display: grid;
-  width: 90%;
-  max-width: 1240px;
-  margin: 0 auto;
+  position: relative;
+  width: 1000px;
+  min-height: 500px;
+  margin: 100px auto;
 }

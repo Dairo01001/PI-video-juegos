@@ -7,6 +7,7 @@ import { sendDB } from "../../utils/sendGame";
 import styled from "./CreateGame.module.css";
 import GoHome from "../../components/GoHome";
 import { getGames } from "../../redux/actions";
+import { DEFAULT } from "../../utils/globalConstants";
 
 export const validate = (input) => {
   let err = {};
@@ -31,7 +32,25 @@ export const validate = (input) => {
     err.rating = "Rating is invalid!";
   }
 
+  if (input.genres?.length === 0) {
+    err.genres = "Escoje al menos un genero";
+  }
+
+  if (input.platforms?.length === 0) {
+    err.platforms = "Escoje al menor una plataforma";
+  }
+
   return err;
+};
+
+const isValid = (err) => {
+  return (
+    !err.description &&
+    !err.name &&
+    !err.rating &&
+    !err.platforms &&
+    !err.genres
+  );
 };
 
 const CreateGame = () => {
@@ -41,11 +60,7 @@ const CreateGame = () => {
 
   const dispatch = useDispatch();
 
-  const [err, setErr] = useState({
-    name: "",
-    description: "",
-    rating: 0,
-  });
+  const [err, setErr] = useState({});
 
   const [input, setInput] = useState({
     name: "",
@@ -66,19 +81,15 @@ const CreateGame = () => {
   }, []);
 
   const inputChange = (e) => {
-    setInput({
-      ...input,
-      [e.target.name]:
-        e.target.name === "genres" || e.target.name === "platforms"
-          ? [...input[e.target.name], e.target.value]
-          : e.target.value,
-    });
+    if (e.target.value !== DEFAULT) {
+      setInput({
+        ...input,
+        [e.target.name]:
+          e.target.name === "genres" || e.target.name === "platforms"
+            ? [...input[e.target.name], e.target.value]
+            : e.target.value,
+      });
 
-    if (
-      e.target.name === "name" ||
-      e.target.name === "description" ||
-      e.target.name === "rating"
-    ) {
       setErr(
         validate({
           ...input,
@@ -90,31 +101,32 @@ const CreateGame = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    await sendDB({
-      ...input,
-      rating: Number(input.rating),
-      description: `<p>${input.description}</p>`,
-      genres: [...new Set(input.genres)],
-      platforms: [...new Set(input.platforms)].map((plat) => {
-        return { name: plat };
-      }),
-    });
-    setInput({
-      name: "",
-      description: "",
-      released: "2022-01-18",
-      rating: 0,
-      genres: [],
-      platforms: [],
-    });
+    if (isValid(err)) {
+      await sendDB({
+        ...input,
+        rating: Number(input.rating),
+        description: `<p>${input.description}</p>`,
+        genres: [...new Set(input.genres)],
+        platforms: [...new Set(input.platforms)].map((plat) => {
+          return { name: plat };
+        }),
+      });
+      setInput({
+        name: "",
+        description: "",
+        released: "2022-01-18",
+        rating: 0,
+        genres: [],
+        platforms: [],
+      });
+      setErr({});
+    }
   };
 
   return (
     <div className={styled.container}>
       <form onSubmit={handleOnSubmit}>
-        <h1>Create Game</h1>
         <fieldset>
-          <label>Name</label>
           <input
             type="text"
             name="name"
@@ -124,17 +136,9 @@ const CreateGame = () => {
             required={true}
           />
           {err.name ? <span>{err.name}</span> : null}
+        </fieldset>
 
-          <label>Released</label>
-          <input
-            type="date"
-            name="released"
-            value={input.released}
-            min="2022-01-01"
-            max="2022-12-31"
-            onChange={inputChange}
-          />
-
+        <fieldset>
           <label>Rating</label>
           <input
             type="number"
@@ -148,7 +152,6 @@ const CreateGame = () => {
         </fieldset>
 
         <fieldset>
-          <label>Description</label>
           <textarea
             name="description"
             value={input.description}
@@ -160,23 +163,34 @@ const CreateGame = () => {
         </fieldset>
 
         <fieldset>
-          <label>Genres</label>
+          <input
+            type="date"
+            name="released"
+            value={input.released}
+            min="2022-01-01"
+            max="2022-12-31"
+            onChange={inputChange}
+          />
+
           <select name="genres" onChange={inputChange}>
+            <option value={DEFAULT}>Genres...</option>
             {genres.map(({ name, id }) => (
               <option key={id} value={name}>
                 {name}
               </option>
             ))}
           </select>
+          {err.genres ? <span>{err.genres}</span> : null}
 
-          <label>Platforms</label>
           <select name="platforms" onChange={inputChange}>
+            <option value={DEFAULT}>Platforms...</option>
             {platforms.map(({ id, name }) => (
               <option key={id} value={name}>
                 {name}
               </option>
             ))}
           </select>
+          {err.platforms ? <span>{err.platforms}</span> : null}
         </fieldset>
         <button type="submit">SAVE</button>
       </form>

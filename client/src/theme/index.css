@@ -118,3 +118,9 @@ button:hover {
     0 0 100px #03e9f4;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  font-family: gamer;
+}
