@@ -95,7 +95,9 @@ const CreateGame = () => {
       rating: Number(input.rating),
       description: `<p>${input.description}</p>`,
       genres: [...new Set(input.genres)],
-      platforms: [...new Set(input.platforms)],
+      platforms: [...new Set(input.platforms)].map((plat) => {
+        return { name: plat };
+      }),
     });
     setInput({
       name: "",
