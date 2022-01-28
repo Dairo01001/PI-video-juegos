@@ -1,12 +1,9 @@
-.head {
-  width: 90%;
-  max-width: 1240px;
-  margin: 0 auto;
-  margin-bottom: 10px;
+.container {
+  display: flex;
+  justify-content: space-around;
 }
 
-.head button {
-    padding: 5px;
-    width: 100px;
-    margin-right: 100px;
+.container button {
+  padding: 5px;
+  width: auto;
 }

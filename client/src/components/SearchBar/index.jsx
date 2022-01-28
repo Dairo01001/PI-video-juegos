@@ -14,12 +14,12 @@ const SearchBar = () => {
   const search = (e) => {
     e.preventDefault();
     dispatch(searchGame(input));
+    setInput("");
   };
 
   return (
     <form onSubmit={search}>
       <input type="text" value={input} onChange={onChange}></input>
-      <input type="submit"></input>
     </form>
   );
 };

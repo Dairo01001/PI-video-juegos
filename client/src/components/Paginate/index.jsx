@@ -14,7 +14,7 @@ const Paginate = () => {
   };
 
   return (
-    <div className={styled.head}>
+    <div className={styled.container}>
       <button onClick={previous}>❮ Previous</button>
       <button onClick={next}>Next ❯</button>
     </div>
