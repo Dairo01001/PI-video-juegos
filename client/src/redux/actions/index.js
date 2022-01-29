@@ -1,4 +1,5 @@
 import axios from "axios";
+import { PORT } from "../../utils/port";
 export const GET_GAMES = "GET_GAMES";
 export const GET_GAME_DETAIL = "GET_GAME_DETAIL";
 export const NEXT_PAGE = "NEXT_PAGE";
@@ -11,10 +12,11 @@ export const ORDER_BY_RATING = "ORDER_BY_RATING";
 export const ALL_GAMES = "ALL_GAMES";
 export const GET_GAMES_DB = "GET_GAMES_DB";
 
+
 export const getGames = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:3001/videogames");
+      const response = await axios.get(`http://localhost:${PORT}/videogames`);
       dispatch({ type: GET_GAMES, payload: response.data });
     } catch (error) {
       console.error(error);
@@ -30,7 +32,7 @@ export const searchGame = (name) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/videogames/?name=${name}`
+        `http://localhost:${PORT}/videogames/?name=${name}`
       );
       dispatch({ type: SEARCH_GAME, payload: response.data });
     } catch (error) {
@@ -43,7 +45,7 @@ export const getGameDetail = (idVideogame) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/videogame/${idVideogame}`
+        `http://localhost:${PORT}/videogame/${idVideogame}`
       );
       dispatch({ type: GET_GAME_DETAIL, payload: response.data });
     } catch (error) {
