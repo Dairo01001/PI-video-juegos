@@ -1,9 +1,11 @@
 .container {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .container button {
+  margin-top: 45px;
   padding: 5px;
   width: auto;
 }

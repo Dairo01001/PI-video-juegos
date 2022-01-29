@@ -3,10 +3,10 @@
   width: 1000px;
   min-height: 500px;
   margin: 100px auto;
-  background-color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
   -webkit-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 93px 0px rgba(0, 0, 0, 0.75);
 }
 
 .thumbnail {
@@ -41,7 +41,6 @@
 .title {
   padding-top: 15px;
   font-size: 1.3rem;
-  color: #4b4b4b;
 }
 
 .separator {
