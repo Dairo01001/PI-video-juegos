@@ -12,7 +12,7 @@ const {
 
 const app = express();
 
-app.set("port", 3002);
+app.set("port", config.SERVER_PORT);
 
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
