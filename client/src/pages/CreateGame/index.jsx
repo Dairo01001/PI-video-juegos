@@ -37,7 +37,7 @@ export const validate = (input) => {
   }
 
   if (input.platforms?.length === 0) {
-    err.platforms = "Escoje al menor una plataforma";
+    err.platforms = "Escoje al menos una plataforma";
   }
 
   return err;
@@ -82,12 +82,16 @@ const CreateGame = () => {
 
   const inputChange = (e) => {
     if (e.target.value !== DEFAULT) {
+      let key = e.target.name;
+      let value = e.target.value;
       setInput({
         ...input,
-        [e.target.name]:
-          e.target.name === "genres" || e.target.name === "platforms"
-            ? [...input[e.target.name], e.target.value]
-            : e.target.value,
+        [key]:
+          key === "genres" || key === "platforms"
+            ? !input[key].includes(value)
+              ? [...input[key], value]
+              : input[key]
+            : value,
       });
 
       setErr(
@@ -106,8 +110,7 @@ const CreateGame = () => {
         ...input,
         rating: Number(input.rating),
         description: `<p>${input.description}</p>`,
-        genres: [...new Set(input.genres)],
-        platforms: [...new Set(input.platforms)].map((plat) => {
+        platforms: input.platforms.map((plat) => {
           return { name: plat };
         }),
       });
@@ -120,7 +123,9 @@ const CreateGame = () => {
         platforms: [],
       });
       setErr({});
+      alert("Juego Guardado correctamente!");
     }
+    alert("Completa correctamente el form!");
   };
 
   return (
@@ -172,6 +177,7 @@ const CreateGame = () => {
             onChange={inputChange}
           />
 
+          <p>{input.genres.map((genre) => ` ${genre} `)}</p>
           <select name="genres" onChange={inputChange}>
             <option value={DEFAULT}>Genres...</option>
             {genres.map(({ name, id }) => (
@@ -182,6 +188,7 @@ const CreateGame = () => {
           </select>
           {err.genres ? <span>{err.genres}</span> : null}
 
+          <p>{input.platforms.map((plat) => ` ${plat} `)}</p>
           <select name="platforms" onChange={inputChange}>
             <option value={DEFAULT}>Platforms...</option>
             {platforms.map(({ id, name }) => (

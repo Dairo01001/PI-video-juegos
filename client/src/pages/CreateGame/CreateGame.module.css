@@ -11,3 +11,30 @@
   background: rgba(0,0,0,.5);
   box-shadow: 0 15px 25px rgba(0,0,0,.6);
 }
+
+.container fieldset {
+  display: grid;
+  border: none;
+}
+
+.container span {
+  color: red;
+  font-size: .3em;
+}
+
+.container p {
+  font-size: .4em;
+  margin: 3px;
+}
+
+.container label {
+  font-size: .5em;
+}
+
+.container button {
+  margin: 0px;
+  padding: 0px 5px 0px 10px;
+  width: max-content;
+  position:relative;
+  left: 45%;
+}
