@@ -25,13 +25,13 @@ const Order = () => {
   return (
     <div>
       <select name="name" onChange={onChange}>
-        <option value={DEFAULT}>Order by name...</option>
+        <option value={DEFAULT}>Ordenar por nombre</option>
         <option value={ASCENDING_ORDER}>A - Z</option>
         <option value={DESCENDING_ORDER}>Z - A</option>
       </select>
 
       <select name="rating" onChange={onChange}>
-        <option value={DEFAULT}>Order by rating...</option>
+        <option value={DEFAULT}>Ordenar por puntaje</option>
         <option value={ASCENDING_ORDER}>Mayor a Menor</option>
         <option value={DESCENDING_ORDER}>Menor a Mayor</option>
       </select>

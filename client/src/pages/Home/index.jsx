@@ -31,21 +31,21 @@ const Home = () => {
       <Header />
       <div className={styled.filterOptions}>
         <button>
-          <Link to="/home/creategame">Create Game</Link>
+          <Link to="/home/creategame">CREAR JUEGO</Link>
         </button>
         <button
           onClick={() => {
             dispatch(allGames());
           }}
         >
-          all games
+          JUEGOS
         </button>
         <button
           onClick={() => {
             dispatch(getGamesDB());
           }}
         >
-          Games DB
+          JUEGOS BD
         </button>
         <Filter />
         <Order />

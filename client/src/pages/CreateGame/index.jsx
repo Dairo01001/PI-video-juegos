@@ -13,31 +13,31 @@ export const validate = (input) => {
   let err = {};
 
   if (!input.name) {
-    err.name = "Name is required!";
-  } else if (!/[A-Za-z0-9]+/g.test(input.name)) {
-    err.name = "Name is invalid!";
+    err.name = "El nombre es requerido!";
+  } else if (!/^[A-Za-z0-9\s]+$/g.test(input.name)) {
+    err.name = "El nombre es invalido!";
   }
 
   if (!input.description) {
-    err.description = "Description is required!";
-  } else if (!/[A-Za-z0-9]+/g.test(input.description)) {
-    err.description = "Description is invalid!";
+    err.description = "La descripcion es requerida!";
+  } else if (!/^[A-Za-z0-9\s]+$/g.test(input.description)) {
+    err.description = "La descripcion es invalida!";
   } else if (input.description?.length < 50) {
-    err.description = "Longitud mayor a 50 characters!";
+    err.description = "Tiene que tener al menos 50 letras!";
   }
 
   if (!input.rating) {
-    err.rating = "Rating is required!";
+    err.rating = "El Puntage es requerido!";
   } else if (input.rating > 5 || input.rating < 0) {
-    err.rating = "Rating is invalid!";
+    err.rating = "El Puntage es invalido!";
   }
 
   if (input.genres?.length === 0) {
-    err.genres = "Escoje al menos un genero";
+    err.genres = "Tienes que escojer al menos un Genero!";
   }
 
   if (input.platforms?.length === 0) {
-    err.platforms = "Escoje al menos una plataforma";
+    err.platforms = "Tienes que escojer al menos una Plataforma!";
   }
 
   return err;
@@ -123,9 +123,9 @@ const CreateGame = () => {
         platforms: [],
       });
       setErr({});
-      alert("Juego Guardado correctamente!");
+      alert("Juego creado correctamente!");
     }
-    alert("Completa correctamente el form!");
+    alert("Completa correctamente el formulario!");
   };
 
   return (
@@ -136,7 +136,7 @@ const CreateGame = () => {
             type="text"
             name="name"
             value={input.name}
-            placeholder="name..."
+            placeholder="Nombre..."
             onChange={inputChange}
             required={true}
           />
@@ -144,7 +144,7 @@ const CreateGame = () => {
         </fieldset>
 
         <fieldset>
-          <label>Rating</label>
+          <label>Puntaje</label>
           <input
             type="number"
             name="rating"
@@ -161,7 +161,7 @@ const CreateGame = () => {
             name="description"
             value={input.description}
             onChange={inputChange}
-            placeholder="description..."
+            placeholder="Descripcion..."
             required={true}
           ></textarea>
           {err.description ? <span>{err.description}</span> : null}
@@ -179,7 +179,7 @@ const CreateGame = () => {
 
           <p>{input.genres.map((genre) => ` ${genre} `)}</p>
           <select name="genres" onChange={inputChange}>
-            <option value={DEFAULT}>Genres...</option>
+            <option value={DEFAULT}>Generos...</option>
             {genres.map(({ name, id }) => (
               <option key={id} value={name}>
                 {name}
@@ -190,7 +190,7 @@ const CreateGame = () => {
 
           <p>{input.platforms.map((plat) => ` ${plat} `)}</p>
           <select name="platforms" onChange={inputChange}>
-            <option value={DEFAULT}>Platforms...</option>
+            <option value={DEFAULT}>Plataformas...</option>
             {platforms.map(({ id, name }) => (
               <option key={id} value={name}>
                 {name}
@@ -199,7 +199,7 @@ const CreateGame = () => {
           </select>
           {err.platforms ? <span>{err.platforms}</span> : null}
         </fieldset>
-        <button type="submit">SAVE</button>
+        <button type="submit">GUARDAR</button>
       </form>
       <GoHome />
     </div>

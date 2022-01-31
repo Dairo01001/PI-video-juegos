@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchGame } from "../../redux/actions";
 
-import styled from "./SearchBar.module.css"
+import styled from "./SearchBar.module.css";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
@@ -15,13 +15,23 @@ const SearchBar = () => {
 
   const search = (e) => {
     e.preventDefault();
-    dispatch(searchGame(input));
-    setInput("");
+    if (input && /^[A-Za-z0-9\s]+$/g.test(input)) {
+      dispatch(searchGame(input));
+      setInput("");
+    } else {
+      alert("Nombre de la busqueda, Incorrecto!");
+    }
   };
-
+  
   return (
     <form onSubmit={search}>
-      <input className={styled.searchBar} type="text" value={input} onChange={onChange}></input>
+      <input
+        className={styled.searchBar}
+        type="text"
+        value={input}
+        onChange={onChange}
+        placeholder="Buscar"
+      ></input>
     </form>
   );
 };

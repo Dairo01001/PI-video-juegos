@@ -5,7 +5,7 @@ import styled from "./Header.module.css";
 const Header = () => {
   return (
     <header className={styled.header}>
-      <h1>VIDEO GAMES</h1>
+      <h1>VIDEO JUEGOS</h1>
       <SearchBar />
       <Paginate />
     </header>

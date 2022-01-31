@@ -23,7 +23,7 @@ const Filter = () => {
   return (
     <div className={styled.container}>
       <select name="genres" onChange={inputChange}>
-        <option value={DEFAULT}>Filter...</option>
+        <option value={DEFAULT}>Filtrar por genero</option>
         {genres.map(({ id, name }) => (
           <option key={id} value={name}>
             {name}

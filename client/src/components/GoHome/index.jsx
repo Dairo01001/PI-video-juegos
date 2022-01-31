@@ -4,7 +4,7 @@ import styled from "./GoHome.module.css";
 const GoHome = () => {
   return (
     <Link to="/home" className={styled.button}>
-      Back
+      BACK
     </Link>
   );
 };
