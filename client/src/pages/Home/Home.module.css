@@ -3,3 +3,18 @@
   grid-template-columns: auto 300px;
   grid-template-rows: 200px auto;
 }
+
+
+.filterOptions {
+  padding-top: 200px;
+}
+
+.filterOptions select{
+  width: 250px;
+}
+
+.filterOptions button {
+  width: 250px;
+}
+
+

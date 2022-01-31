@@ -29,8 +29,10 @@ const Home = () => {
   return (
     <div className={styled.container}>
       <Header />
-      <div>
-        <Link to="/home/creategame">Create Game</Link>
+      <div className={styled.filterOptions}>
+        <button>
+          <Link to="/home/creategame">Create Game</Link>
+        </button>
         <button
           onClick={() => {
             dispatch(allGames());

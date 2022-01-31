@@ -33,10 +33,24 @@ const GameDetail = () => {
     platforms,
   } = gameDetail;
 
+  const divImg = {
+    position: "absolute",
+    width: "100vw",
+    height: "100vh",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundImage: `url(${
+      background_image
+        ? background_image
+        : "https://images2.alphacoders.com/206/206292.jpg"
+    })`,
+  };
+
   document.title = `Games | ${name}`;
 
   return (
-    <div>
+    <div style={divImg}>
       <div className={styled.card}>
         <div className={styled.thumbnail}>
           <img
