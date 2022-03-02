@@ -124,8 +124,7 @@ const CreateGame = () => {
       });
       setErr({});
       alert("Juego creado correctamente!");
-    }
-    alert("Completa correctamente el formulario!");
+    } else alert("Completa correctamente el formulario!");
   };
 
   return (
